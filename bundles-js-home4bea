@@ -1,0 +1,1394 @@
+function ipadFullScreenFix() {
+    $(".vjs-fullscreen-control").after('<div class="fullScreenIcon icon-resize-full" tabindex="0"><\/div>');
+    $(".vjs-fullscreen-control").hide();
+    $(".customVolumeIcon ").hide();
+    ipadFullScreen = !1;
+    $(".fullScreenIcon").bind("click tap", function() {
+        $("#peddleVideo_html5_api").toggleClass("ipadFix");
+        $("#peddleVideo").toggleClass("ipadFixParent");
+        $(".peddleVideoModal").toggleClass("peddleVideoModalFullScreen");
+        var n = parseInt($("#peddleVideo_html5_api").css("height")) > 150 ? "150px" : $(window).height() - 250;
+        $("#peddleVideo_html5_api").css("height", n);
+        ipadFullScreen = !ipadFullScreen;
+        $("body").toggleClass("bodyScroll");
+        $("html").toggleClass("bodyScroll");
+        $("#videoPopupClose").toggle();
+        $(".cloudContainer").toggle();
+        $(".peddleHeader").toggle()
+    })
+}
+
+function attatchVideoController() {
+    var n = navigator.userAgent.match(/iPad/i) != null;
+    $("#videoVolumeSliderId").length > 0 || ($(".vjs-mute-control").after('<div id="videoVolumeSliderId" class="customVolumeIcon icon-volume" tabindex="0"><\/div>'), $(".vjs-mute-control").hide(), $(".customVolumeIcon").tooltipster({
+        content: $("#volumeControl").html(),
+        contentAsHTML: !0,
+        interactive: !0,
+        theme: "volumeControl-theme",
+        functionReady: function() {
+            $(".filterSlider").slider();
+            lastAdjustedVolume !== "" && $(".filterSlider").slider("setValue", lastAdjustedVolume);
+            $(".filterSlider").on("slide slideStop", function(n) {
+                var t = this;
+                return setTimeout(function() {
+                    var n = $(t).val();
+                    $(".video-js")[0].player.volume(1 - n / 100);
+                    lastAdjustedVolume = n
+                }, 400, t), n.stopPropagation(), !1
+            });
+            $(".volumeControl-theme").bind("mouseover", function() {
+                $(".vjs-control-bar").css("cssText", "display: block !important;");
+                $(".vjs-control-bar").css("opacity", "1");
+                $(".vjs-control-bar").css("visibility", "visible")
+            });
+            $(".volumeControl-theme").bind("mouseout", function() {
+                $(".vjs-control-bar").css("cssText", "display: block;")
+            })
+        }
+    }), n && ipadFullScreenFix())
+}
+
+function attachScrolling() {
+    $(".scroll-link").on("click", function(n) {
+        n.preventDefault();
+        var t = $(this).attr("data-id");
+        scrollToID("#" + t, 750)
+    });
+    $(".scroll-top").on("click", function(n) {
+        n.preventDefault();
+        $("html, body").animate({
+            scrollTop: 0
+        }, "slow")
+    });
+    $("#nav-toggle").on("click", function(n) {
+        n.preventDefault();
+        $("#menu").toggleClass("open")
+    })
+}
+
+function scrollToOffset(n, t) {
+    var i = $(".peddleHeader").height(),
+        r = $(n).offset().top - i;
+    $("html,body").animate({
+        scrollTop: r
+    }, t)
+}
+
+function scrollToID(n, t) {
+    $("#menu").off("closed.mm");
+    $("#menu").on("closed.mm", function() {
+        scrollToOffset(n, t)
+    });
+    var i = $("#menu");
+    i.hasClass("open") ? i.trigger("close") : scrollToOffset(n, t)
+}
+
+function swiftlyScrolling() {
+    var n = $.superscrollorama({
+        triggerAtCenter: !1,
+        playoutAnimations: !0
+    });
+    n.addTween("#browserIphone", (new TimelineLite).append([TweenMax.from($("#browserIphone"), "1", {
+        css: {
+            left: -292
+        },
+        delay: "2",
+        ease: Quad.easeOut,
+        immediateRender: !0
+    })]), 800, -($(window).height() + $("#browserIphone").height()));
+    n.addTween("#carrier", (new TimelineLite).append([TweenMax.from($("#carrier"), "1", {
+        css: {
+            left: -292
+        },
+        delay: "2",
+        ease: Quad.easeOut,
+        immediateRender: !0
+    })]), 800, -($(window).height() + $("#carrier").height()));
+    n.addTween("#offerCar", (new TimelineLite).append([TweenMax.from($("#offerCar"), "1", {
+        css: {
+            right: -292
+        },
+        delay: "2",
+        ease: Quad.easeOut,
+        immediateRender: !0
+    })]), 800, -($(window).height() + $("#offerCar").height()));
+    n.addTween("#check", (new TimelineLite).append([TweenMax.from($("#check"), "1", {
+        css: {
+            right: -292
+        },
+        delay: "2",
+        ease: Quad.easeOut,
+        immediateRender: !0
+    })]), 800, -($(window).height() + $("#check").height() + 300))
+}
+
+function getRecentlyPeddleCarInfoCallback(n) {
+    n.Success && !!n.Vehicles && amplify.publish("recentlyPeddleCarInfo.response", n, "recentlyPeddleCarInfo")
+}
+
+function getSocialNetworkDataCallback(n) {
+    n.Success && amplify.publish("socialNetworkData.response", n, "socialNetworkData")
+}
+
+function subscribe() {
+    amplify.subscribe("socialNetworkData.response", function(n) {
+        setDataInTestimonials(n)
+    });
+    amplify.subscribe("recentlyPeddleCarInfo.response", function(n) {
+        setDataForRecentlyPeddleCarInfo(n)
+    })
+}
+
+function highLightPeddleText(n) {
+    var t = n.search("@peddle");
+    return t >= 0 ? (n = n.replace("@peddle", "<a href='https://twitter.com/peddle' target='_blank'><span class='greyTextStyle'>@peddle<\/span><\/a>"), n.length > 235) ? n.substring(0, 320) + "..." : n : n.length > 135 ? n.substring(0, 220) + "..." : n
+}
+
+function setDataInTestimonials(n) {
+    var u = "",
+        s = "",
+        i = [],
+        r = [],
+        f = [],
+        e, o, t, h;
+    for ($.each(n.TweeterData, function(n, t) {
+            var r = "";
+            r += '<div class="tweetSlide">';
+            r += '<div class="tweetStyle">';
+            r += highLightPeddleText(t.Text);
+            r += "<\/div>";
+            r += '<div class="tweets">';
+            r += '<a class="tweetsName" href="' + t.Link + '" target="_blank">' + t.Name + "<\/a>";
+            r += " -- ";
+            r += '<div class="tweeterSymbol">';
+            r += "<\/div>";
+            r += "<\/div>";
+            r += "<\/div>";
+            i.push(r)
+        }), $.each(n.FacebookData, function(n, t) {
+            var i = "";
+            i += '<div class="tweetSlide">';
+            i += '<div class="tweetStyle">';
+            i += highLightPeddleText(t.Text);
+            i += "<\/div>";
+            i += '<div class="tweets">';
+            i += '<a class="tweetsName"  href="' + t.Link + '" target="_blank">' + t.Name + "<\/a>";
+            i += " -- ";
+            i += '<div class="facebookSymbol"><i class="icon-facebook-circled-1"><\/i>';
+            i += "<\/div>";
+            i += "<\/div>";
+            i += "<\/div>";
+            r.push(i)
+        }), shuffle(i), shuffle(r), e = 0, o = 0, t = 0; t < i.length + r.length; t++) e < r.length && (f.push(r[e]), e++), o < i.length && (f.push(i[o]), o++);
+    for (u += '<div class="swipe-wrap">', t = 0; t < f.length && t < 4; t++) u += f[t], s += '<div class="socialPanelIndicator"><div><\/div><\/div>';
+    u += "<\/div>";
+    $("#tweet").append(u);
+    $(".socialPanelIndicatorContainer").append(s);
+    h = $("#tweet").Swipe({
+        auto: 6e3,
+        disableScroll: !1,
+        speed: 200,
+        stopPropagation: !1,
+        indicator: !1,
+        continuous: !0,
+        startSlide: 0,
+        callback: function(n) {
+            $("#socialNetworkContainer .socialPanelIndicator .socialPanelIndicatorActive").removeClass("socialPanelIndicatorActive");
+            $("#socialNetworkContainer .socialPanelIndicator").removeClass("socialPanelIndicatorActiveParent");
+            $("#socialNetworkContainer .socialPanelIndicator").eq(n).children().addClass("socialPanelIndicatorActive");
+            $("#socialNetworkContainer .socialPanelIndicator").eq(n).addClass("socialPanelIndicatorActiveParent")
+        }
+    }).data("Swipe");
+    $("#socialNetworkContainer .socialPanelIndicator").eq(0).children().addClass("socialPanelIndicatorActive");
+    $("#socialNetworkContainer .socialPanelIndicator").eq(0).addClass("socialPanelIndicatorActiveParent");
+    $(".socialPanelIndicator").click(function() {
+        if ($(this).children().hasClass("socialPanelIndicatorActive")) return !1;
+        $(".socialPanelIndicatorActive").removeClass("socialPanelIndicatorActive");
+        $(".socialPanelIndicatorActiveParent").removeClass("socialPanelIndicatorActiveParent");
+        $(this).children().addClass("socialPanelIndicatorActive");
+        $(this).addClass("socialPanelIndicatorActiveParent");
+        h.slide($(this).index(), 200)
+    });
+    $(".swipe-wrap > div").css("float", "none");
+    setTimeout(function() {
+        $(".swipe-wrap > div").css("float", "left")
+    }, 200)
+}
+
+function shuffle(n) {
+    for (var t = n.length, r, i; 0 !== t;) i = Math.floor(Math.random() * t), t -= 1, r = n[t], n[t] = n[i], n[i] = r;
+    return n
+}
+
+function setDataForRecentlyPeddleCarInfo(n) {
+    var t = "",
+        i;
+    $.each(n.Vehicles, function(n, i) {
+        t += '<div class="col-sm-4 col-md-4">';
+        t += '<div class="carImageContainer img-responsive">';
+        t += '<img id="carImage' + i.ClaimCode + '" src="' + i.CarImage + '" class="img-responsive carImageStyle" onError="com.site.Home.setDefaultImage(this.id)" />';
+        t += '<div class="recentCarImage" style="background:url(' + i.CarImage + ')"><\/div>';
+        t += '<div class="row">';
+        t += '<div class="col-xs-6 col-sm-6 col-md-8">';
+        t += '<div class="carNameStyle">';
+        t += i.Year + " " + i.Make + " " + i.Model;
+        t += "<\/div>";
+        t += '<div class="carLocationStyle">' + i.City + ", " + i.StateCode;
+        t += "<\/div>";
+        t += "<\/div>";
+        t += '<div class="col-xs-6 col-sm-6 col-md-4">';
+        t += '<span class="badge ronniaFont">$' + com.site.Util.add_commas(i.OfferAmount);
+        t += "<\/span>";
+        t += "<\/div>";
+        t += "<\/div>";
+        t += "<\/div>";
+        t += "<\/div>"
+    });
+    $("#recentlyPeddledContainerDesktop").append(t);
+    t = "";
+    t += '<div class="swipe-wrap">';
+    $.each(n.Vehicles, function(n, i) {
+        t += '<div class="recentlyPeddledContainer">';
+        t += '<div class="carImageContainer img-responsive">';
+        t += '<img id="carImage' + i.ClaimCode + '" src="' + i.CarImage + '" class="img-responsive carImageStyle" onError="com.site.Util.setDefaultImage(this.id)" />';
+        t += '<div class="pull-left">';
+        t += '<div class="carNameStyle">';
+        t += i.Year + " " + i.Make + " " + i.Model;
+        t += "<\/div>";
+        t += '<div class="carLocationStyle">' + i.City + ", " + i.StateCode;
+        t += "<\/div>";
+        t += "<\/div>";
+        t += '<span class="badge ronniaFont">$' + com.site.Util.add_commas(i.OfferAmount);
+        t += "<\/span>";
+        t += "<\/div>";
+        t += "<\/div>"
+    });
+    t += "<\/div>";
+    $("#recentlyPeddled").append(t);
+    i = $("#recentlyPeddled").Swipe({
+        disableScroll: !1,
+        speed: 200,
+        stopPropagation: !1,
+        indicator: !1,
+        continuous: !0,
+        startSlide: 0,
+        callback: function(n) {
+            $("#recentlyPeddledContainer .panelIndicator .panelIndicatorActive").removeClass("panelIndicatorActive");
+            $("#recentlyPeddledContainer .panelIndicator").removeClass("panelIndicatorActiveParent");
+            $("#recentlyPeddledContainer .panelIndicator").eq(n).children().addClass("panelIndicatorActive");
+            $("#recentlyPeddledContainer .panelIndicator").eq(n).addClass("panelIndicatorActiveParent")
+        }
+    }).data("Swipe");
+    $(".panelIndicator").click(function() {
+        if ($(this).children().hasClass("panelIndicatorActive")) return !1;
+        $(".panelIndicatorActive").removeClass("panelIndicatorActive");
+        $(".panelIndicatorActiveParent").removeClass("panelIndicatorActiveParent");
+        $(this).children().addClass("panelIndicatorActive");
+        $(this).addClass("panelIndicatorActiveParent");
+        i.slide($(this).index(), 200)
+    });
+    $(".carImageContainer").click(function(n) {
+        return window.open(com.site.Config.VehicleInfoLink, "_self"), n.stopPropagation(), !1
+    })
+}
+
+function isiPhone() {
+    return navigator.platform.indexOf("iPhone") != -1 || navigator.platform.indexOf("iPod") != -1
+}
+var ZIPCodeTimeZoneGBL, differentSellerAccount, com, lastAdjustedVolume, ipadFullScreen;
+if (com) {
+    if (typeof com != "object") throw new Error("com already exists and is not an object");
+} else com = {};
+if (com.site) {
+    if (typeof com.site != "object") throw new Error("com.site already exists and is not an object");
+} else com.site = {};
+if (com.site.CreateAccount) {
+    if (typeof com.site.CreateAccount != "object") throw new Error("com.site.CreateAccount already exists and is not an object");
+} else com.site.CreateAccount = {};
+if (com.site.CreateAccount.createAccountQuestionProperty = [{
+        name: "createAccountEmailInput",
+        isVisible: !0,
+        answer: "",
+        errorText: "email address",
+        setAnswer: function(n) {
+            this.answer = n
+        },
+        getAnswer: function() {
+            return this.answer
+        }
+    }], com.site.CreateAccount.CreateAccountControl = function(n) {
+        this.postEnableButton = n.postEnableButton;
+        this.postDisableButton = n.postDisableButton;
+        this.postClickEnableButton = n.postClickEnableButton;
+        this.postClickDisableButton = n.postClickDisableButton;
+        this.CAQId = com.site.CreateAccount.createAccountQuestionProperty;
+        this.AttachCreateAccountEvents();
+        this.MIN_PASSWORD_LENGTH = 6;
+        this.ErrorMessageText = "";
+        this.PreviousErrorMessageTextFilled = !1
+    }, com.site.CreateAccount.CreateAccountControl.prototype = {
+        getInputIndexFromName: function(n) {
+            for (var t = 0; t < this.CAQId.length; t++)
+                if (this.CAQId[t].name == n) return t;
+            return null
+        },
+        getInputValue: function(n) {
+            var t = this.getInputIndexFromName(n);
+            return this.CAQId[t].getAnswer()
+        },
+        createAccountButtonAction: function() {
+            this.validateAllInput(!1, !0);
+            this.IsAllAnsweredSet() === !0 ? this.postClickEnableButton() : (this.ErrorMessageText = "", this.PreviousErrorMessageTextFilled = !1, this.highLightError(), this.postClickDisableButton())
+        },
+        highLightError: function() {
+            this.validateAllInput(!0, !0)
+        },
+        hideCustomErrorAlert: function() {
+            $("#createAccountErrorMsg .errorMessageText").html("");
+            $("#createAccountErrorMsg").hide()
+        },
+        validateAllInput: function(n, t) {
+            this.validateInput("createAccountEmailInput", n, t)
+        },
+        IsAllAnsweredSet: function() {
+            for (var t, n = 0; n < this.CAQId.length; n++)
+                if (t = this.CAQId[n], t.isVisible && t.answer == "") return n;
+            return !0
+        },
+        validateInput: function(n, t, i) {
+            var r = this.getInputIndexFromName(n),
+                u = $.trim($("#" + n).val());
+            if (this.CAQId[r].isVisible) {
+                if (com.site.Util.isBlank(n)) return this.CAQId[r].setAnswer(""), i || (com.site.Util.removeErrorStateToInput(n, !0), this.hideCustomErrorAlert()), t && (com.site.Util.addErrorStateToInput(n, !0), (this.ErrorMessageText == "" || this.PreviousErrorMessageTextFilled) && (this.ErrorMessageText = this.ErrorMessageText != "" ? this.ErrorMessageText.replace(".", ",") + " " + this.CAQId[r].errorText + "." : "Enter valid " + this.CAQId[r].errorText + ".", this.PreviousErrorMessageTextFilled = !0)), !1;
+                switch (n) {
+                    case "createAccountEmailInput":
+                        if (!com.site.Util.isValidEmail(u)) return this.CAQId[r].setAnswer(""), (i || t) && (com.site.Util.addErrorStateToInput(n, !0), this.ErrorMessageText == "" ? this.ErrorMessageText = "Enter valid email address." : ""), !1
+                }
+                this.CAQId[r].setAnswer($.trim($("#" + n).val()));
+                com.site.Util.addSuccessStateToInput(n, !0)
+            }
+            return !0
+        },
+        enableButton: function() {
+            this.postEnableButton()
+        },
+        disableButton: function() {
+            this.postDisableButton()
+        },
+        checkAllAnswerSet: function() {
+            if (this.IsAllAnsweredSet() === !0) {
+                this.enableButton();
+                return
+            }
+            this.disableButton()
+        },
+        resetAllInput: function() {
+            $("#createAccountEmailInput").val("");
+            com.site.Util.resetInputState("createAccountEmailInput", !0);
+            this.validateAllInput(!1, !1);
+            this.checkAllAnswerSet()
+        },
+        scrollTopInCharome: function(n) {
+            jQuery.browser.mobile && !com.site.Util.isiPhone() && $(".modal-scrollable").animate({
+                scrollTop: $(n).position().top - 50
+            })
+        },
+        AttachCreateAccountEvents: function() {
+            var n = this;
+            n.resetAllInput();
+            $("#createAccountEmailInput").bind({
+                blur: function() {
+                    var t = this;
+                    setTimeout(function() {
+                        n.validateInput(t.id, !1, !0);
+                        n.checkAllAnswerSet()
+                    }, 150, t)
+                },
+                keyup: function() {
+                    com.site.Util.removeErrorStateToInput(this.id, !0);
+                    n.hideCustomErrorAlert();
+                    n.validateInput(this.id, !1);
+                    n.checkAllAnswerSet()
+                },
+                keydown: function(t) {
+                    var i = com.site.Util.getKeyCode(t),
+                        r = this;
+                    return setTimeout(function() {
+                        i == com.site.Config.ENTER_KEY_CODE && (n.validateAllInput(!0, !0), n.IsAllAnsweredSet() === !0 && n.postClickEnableButton())
+                    }, 0, r, i), i == com.site.Config.ENTER_KEY_CODE ? (t.stopPropagation(), t.preventDefault(), !1) : void 0
+                },
+                paste: function() {
+                    var t = this;
+                    setTimeout(function() {
+                        com.site.Util.removeErrorStateToInput(this.id, !0);
+                        n.hideCustomErrorAlert();
+                        n.validateInput(t.id, !1, !1);
+                        n.checkAllAnswerSet()
+                    }, 50, t)
+                },
+                click: function() {
+                    n.scrollTopInCharome(this)
+                }
+            })
+        }
+    }, com) {
+    if (typeof com != "object") throw new Error("com already exists and is not an object");
+} else com = {};
+if (com.site) {
+    if (typeof com.site != "object") throw new Error("com.site already exists and is not an object");
+} else com.site = {};
+if (com.site.Login) {
+    if (typeof com.site.Login != "object") throw new Error("com.site.Login already exists and is not an object");
+} else com.site.Login = {};
+if (com.site.Login.loginQuestionProperty = [{
+        name: "loginEmailInput",
+        isVisible: !0,
+        answer: "",
+        errorText: "email address",
+        setAnswer: function(n) {
+            this.answer = n
+        },
+        getAnswer: function() {
+            return this.answer
+        }
+    }, {
+        name: "loginPasswordInput",
+        isVisible: !0,
+        answer: "",
+        errorText: "password",
+        setAnswer: function(n) {
+            this.answer = n
+        },
+        getAnswer: function() {
+            return this.answer
+        }
+    }], com.site.Login.LoginControl = function(n) {
+        this.postEnableButton = n.postEnableButton;
+        this.postDisableButton = n.postDisableButton;
+        this.postClickEnableButton = n.postClickEnableButton;
+        this.postClickDisableButton = n.postClickDisableButton;
+        this.LQId = com.site.Login.loginQuestionProperty;
+        this.AttachLoginEvents();
+        this.MIN_PASSWORD_LENGTH = 6;
+        this.ErrorMessageText = "";
+        this.PreviousErrorMessageTextFilled = !1
+    }, com.site.Login.LoginControl.prototype = {
+        getInputIndexFromName: function(n) {
+            for (var t = 0; t < this.LQId.length; t++)
+                if (this.LQId[t].name == n) return t;
+            return null
+        },
+        getInputValue: function(n) {
+            var t = this.getInputIndexFromName(n);
+            return this.LQId[t].getAnswer()
+        },
+        loginButtonAction: function() {
+            this.validateInput("loginEmailInput", !1);
+            this.validateInput("loginPasswordInput", !1);
+            this.IsAllAnsweredSet() === !0 ? this.postClickEnableButton() : (this.ErrorMessageText = "", this.PreviousErrorMessageTextFilled = !1, this.highLightError(), this.postClickDisableButton())
+        },
+        highLightError: function() {
+            this.validateInput("loginEmailInput", !0, !0);
+            this.validateInput("loginPasswordInput", !0, !0)
+        },
+        hideCustomErrorAlert: function() {
+            $("#loginErrorMsg .errorMessageText").html("");
+            $("#loginErrorMsg").hide()
+        },
+        IsAllAnsweredSet: function() {
+            for (var t, n = 0; n < this.LQId.length; n++)
+                if (t = this.LQId[n], t.isVisible && t.answer == "") return n;
+            return !0
+        },
+        validateInput: function(n, t, i) {
+            var r = this.getInputIndexFromName(n),
+                u = $.trim($("#" + n).val());
+            if (com.site.Util.isBlank(n)) return this.LQId[r].setAnswer(""), i || (com.site.Util.removeErrorStateToInput(n, !0), this.hideCustomErrorAlert()), t && (com.site.Util.addErrorStateToInput(n, !0), (this.ErrorMessageText == "" || this.PreviousErrorMessageTextFilled) && (this.ErrorMessageText = this.ErrorMessageText != "" ? this.ErrorMessageText.replace(".", ",") + " " + this.LQId[r].errorText + "." : "Enter valid " + this.LQId[r].errorText + ".", this.PreviousErrorMessageTextFilled = !0)), !1;
+            switch (n) {
+                case "loginEmailInput":
+                    if (!com.site.Util.isValidEmail(u)) return this.LQId[r].setAnswer(""), (i || t) && (com.site.Util.addErrorStateToInput(n, !0), this.ErrorMessageText == "" ? this.ErrorMessageText = "Enter valid email address." : ""), !1;
+                    break;
+                case "loginPasswordInput":
+                    if (!com.site.Util.checkForValidPassword(u)) return this.LQId[r].setAnswer(""), com.site.Util.addErrorStateToInput(n, !0), this.ErrorMessageText == "" ? this.ErrorMessageText = "Invalid password character." : "", !1;
+                    if (u.length < this.MIN_PASSWORD_LENGTH) return this.LQId[r].setAnswer(""), (i || t) && (com.site.Util.addErrorStateToInput(n, !0), this.ErrorMessageText == "" ? this.ErrorMessageText = "Passwords must be six or more characters." : ""), !1
+            }
+            return this.LQId[r].setAnswer($.trim($("#" + n).val())), com.site.Util.addSuccessStateToInput(n, !0), !0
+        },
+        enableButton: function() {
+            this.postEnableButton()
+        },
+        disableButton: function() {
+            this.postDisableButton()
+        },
+        checkAllAnswerSet: function() {
+            if (this.IsAllAnsweredSet() === !0) {
+                this.enableButton();
+                return
+            }
+            this.disableButton()
+        },
+        resetAllInput: function() {
+            $("#loginEmailInput, #loginPasswordInput").val("");
+            com.site.Util.resetInputState("loginEmailInput", !0);
+            com.site.Util.resetInputState("loginPasswordInput", !0);
+            this.validateInput("loginEmailInput", !1, !1);
+            this.validateInput("loginPasswordInput", !1, !1);
+            this.checkAllAnswerSet()
+        },
+        scrollTopInCharome: function(n) {
+            jQuery.browser.mobile && !com.site.Util.isiPhone() && $(".modal-scrollable").animate({
+                scrollTop: $(n).position().top - 50
+            })
+        },
+        AttachLoginEvents: function() {
+            var n = this;
+            n.resetAllInput();
+            $("#loginEmailInput, #loginPasswordInput").bind({
+                blur: function() {
+                    var t = this;
+                    setTimeout(function() {
+                        var i = t.id == "loginEmailInput" || t.id == "loginPasswordInput" ? !0 : !1;
+                        n.validateInput(t.id, !1, i);
+                        n.checkAllAnswerSet()
+                    }, 150, t)
+                },
+                keyup: function() {
+                    com.site.Util.removeErrorStateToInput(this.id, !0);
+                    n.checkAllAnswerSet();
+                    n.hideCustomErrorAlert()
+                },
+                keydown: function(t) {
+                    var i = com.site.Util.getKeyCode(t),
+                        r = this;
+                    return setTimeout(function() {
+                        i == com.site.Config.ENTER_KEY_CODE && (n.validateInput("loginEmailInput", !1, !1), n.validateInput("loginPasswordInput", !1, !1), $("#loginPasswordInput").blur(), n.IsAllAnsweredSet() === !0 && n.postClickEnableButton())
+                    }, 0, r, i), i == com.site.Config.ENTER_KEY_CODE ? (t.stopPropagation(), t.preventDefault(), !1) : void 0
+                },
+                paste: function() {
+                    var t = this;
+                    setTimeout(function() {
+                        com.site.Util.removeErrorStateToInput(this.id, !0);
+                        n.hideCustomErrorAlert();
+                        n.validateInput(t.id, !1, !1);
+                        n.checkAllAnswerSet()
+                    }, 50, t)
+                },
+                click: function() {
+                    n.scrollTopInCharome(this)
+                }
+            })
+        }
+    }, com) {
+    if (typeof com != "object") throw new Error("com already exists and is not an object");
+} else com = {};
+if (com.site) {
+    if (typeof com.site != "object") throw new Error("com.site already exists and is not an object");
+} else com.site = {};
+if (com.site.CreateAccountAndLogin) {
+    if (typeof com.site.CreateAccountAndLogin != "object") throw new Error("com.site.CreateAccountAndLogin already exists and is not an object");
+} else com.site.CreateAccountAndLogin = {};
+if (com.site.CreateAccountAndLogin.loginUsingFacebookClicked = !1, com.site.CreateAccountAndLogin.IsSocialLoggedIn = !1, ZIPCodeTimeZoneGBL = "", differentSellerAccount = !1, com.site.CreateAccountAndLogin.getTimeZone = function() {
+        var n = com.site.Util.getBrowserTimeZone();
+        return com.site.Util.isBrowserTimeZoneInsideUSA(n) ? n : ZIPCodeTimeZoneGBL != "" ? ZIPCodeTimeZoneGBL : com.site.Config.DefaultSellerTimeZone
+    }, com.site.CreateAccountAndLogin.showFacebookErrorPopUpForLogin = function() {
+        com.site.CreateAccountAndLogin.infoPopUpModalObj.openModal({
+            id: "loginFacebookError"
+        })
+    }, com.site.CreateAccountAndLogin.showFacebookErrorPopUpForCreateAccount = function() {
+        com.site.CreateAccountAndLogin.infoPopUpModalObj.openModal({
+            id: "createAccountFacebookError"
+        })
+    }, com.site.CreateAccountAndLogin.systemErrorPopupOpen = function() {
+        infoPopUpModalObj.openModal({
+            id: "systemError"
+        })
+    }, com.site.CreateAccountAndLogin.showLogin = function() {
+        com.site.CreateAccountAndLogin.createAccountPageObj.resetAllInput();
+        com.site.CreateAccountAndLogin.loginPageObj.resetAllInput();
+        forgotPasswordPageObj.resetAllInput();
+        $("#accountSectionId, #forgotPasswordSectionId").fadeOut("slow", function() {
+            $("#createAccountLoginModal").append($("#accountSectionId"));
+            $("#createAccountLoginModal").append($("#forgotPasswordSectionId"))
+        });
+        $("#accountSectionId, #forgotPasswordSectionId").hide();
+        $("#loginSectionId").fadeIn("slow", function() {});
+        $("#loginSectionId").show();
+        jQuery.browser.mobile || $("#loginEmailInput").focus();
+        $("#createAccountModalButtonId").removeClass("btn-success")
+    }, com.site.CreateAccountAndLogin.showCreateAccount = function() {
+        com.site.CreateAccountAndLogin.loginPageObj.resetAllInput();
+        com.site.CreateAccountAndLogin.createAccountPageObj.resetAllInput();
+        forgotPasswordPageObj.resetAllInput();
+        $("#loginSectionId, #forgotPasswordSectionId").fadeOut("slow", function() {
+            $("#createAccountLoginModal").append($("#loginSectionId"));
+            $("#createAccountLoginModal").append($("#forgotPasswordSectionId"))
+        });
+        $("#loginSectionId, #forgotPasswordSectionId").hide();
+        $("#accountSectionId").fadeIn("slow", function() {});
+        jQuery.browser.mobile || $("#createAccountEmailInput").focus();
+        $("#accountSectionId").show();
+        $("#loginModalButtonId").removeClass("btn-success")
+    }, com.site.CreateAccountAndLogin.showForgotPassword = function() {
+        setTimeout(function() {
+            var n = com.site.CreateAccountAndLogin.loginPageObj.getInputValue("loginEmailInput");
+            com.site.CreateAccountAndLogin.loginPageObj.resetAllInput();
+            com.site.CreateAccountAndLogin.createAccountPageObj.resetAllInput();
+            forgotPasswordPageObj.resetAllInput();
+            !n || forgotPasswordPageObj.setInputValue("fpEmailInput", n)
+        }, 150);
+        $("#loginSectionId, #accountSectionId").fadeOut("slow", function() {
+            $("#createAccountLoginModal").append($("#loginSectionId"));
+            $("#createAccountLoginModal").append($("#accountSectionId"))
+        });
+        $("#loginSectionId, #accountSectionId").hide();
+        $("#forgotPasswordSectionId").fadeIn("slow", function() {});
+        $("#forgotPasswordErrorMsg").hide();
+        $("#forgotPasswordSectionId").show();
+        jQuery.browser.mobile || $("#fpEmailInput").focus()
+    }, com.site.CreateAccountAndLogin.prepareDuplicateVehicleString = function(n) {
+        var t = n.Vehicle.Year.Name,
+            i = n.Vehicle.Make.Name,
+            r = n.Vehicle.Model.Name;
+        return t + " " + i + " " + r
+    }, com.site.CreateAccountAndLogin.showDuplicateVehicleModal = function(n) {
+        com.site.CreateAccountAndLogin.infoPopUpModalObj.openModal({
+            id: "vehicleAlreadyExist",
+            vehicle: com.site.CreateAccountAndLogin.prepareDuplicateVehicleString(n.Claim),
+            response: n
+        })
+    }, com.site.CreateAccountAndLogin.showDuplicateVehicleModalForListing = function(n) {
+        com.site.CreateAccountAndLogin.infoPopUpModalObj.openModal({
+            id: "vehicleAlreadyListed",
+            vehicle: com.site.CreateAccountAndLogin.prepareDuplicateVehicleString(n.Claim),
+            response: n
+        })
+    }, com.site.CreateAccountAndLogin.showDuplicateAcceptedVehicleModal = function(n) {
+        com.site.CreateAccountAndLogin.booleanPopUpModalObj.openModal({
+            id: "vehicleAlreadyExistAsAccepted",
+            vehicle: com.site.CreateAccountAndLogin.prepareDuplicateVehicleString(n.Claim),
+            response: n
+        })
+    }, com.site.CreateAccountAndLogin.showDuplicateAcceptedVinModal = function(n) {
+        com.site.CreateAccountAndLogin.infoPopUpModalObj.openModal({
+            id: "vinAlreadyExistAsAccepted",
+            vehicle: com.site.CreateAccountAndLogin.prepareDuplicateVehicleString(n.Claim),
+            response: n
+        })
+    }, com.site.CreateAccountAndLogin.showDuplicateDifferentSellerVinModal = function(n) {
+        com.site.CreateAccountAndLogin.infoPopUpModalObj.openModal({
+            id: "vinAlreadyExistForDifferentSeller",
+            vehicle: com.site.CreateAccountAndLogin.prepareDuplicateVehicleString(n.Claim),
+            response: n
+        })
+    }, com.site.CreateAccountAndLogin.showPublisherDuplicateVinAcceptedModal = function(n) {
+        com.site.CreateAccountAndLogin.infoPopUpModalObj.openModal({
+            id: "publisherVinAlreadyExistAsAccepted",
+            vehicle: com.site.CreateAccountAndLogin.prepareDuplicateVehicleString(n.Claim),
+            response: n
+        })
+    }, com.site.CreateAccountAndLogin.showPublisherDuplicateAcceptedVehicleModal = function(n) {
+        com.site.CreateAccountAndLogin.infoPopUpModalObj.openModal({
+            id: "publisherVehicleAlreadyExistAsAccepted",
+            vehicle: com.site.CreateAccountAndLogin.prepareDuplicateVehicleString(n.Claim),
+            response: n
+        })
+    }, com.site.CreateAccountAndLogin.setInfoPopUpSuccessButtonAction = function(n) {
+        var t = n.call(this);
+        (t.id == "vehicleAlreadyExist" || t.id == "vinAlreadyExistAsAccepted" || t.id == "vehicleAlreadyListed") && (t.id == "vehicleAlreadyExist" && com.site.Util.isPublisherView() && t.modalAnswer.DuplicationResponseMessage == "DifferentPublisherSameSellerOpenVehicle" || t.modalAnswer.DuplicationResponseMessage == "DifferentPublisherSameSellerOpenVIN" ? com.site.CreateAccountAndLogin.transferOwnership(AccountIdGBL, t.modalAnswer.Claim.ClaimId, OfferIdGBL) : window.open(t.modalAnswer.RedirectPage + "?OfferID=" + t.modalAnswer.Claim.ClaimCode + "&zipcode=" + t.modalAnswer.Claim.Location.ZipCode, "_self", !1));
+        t.id == "vinAlreadyExistForDifferentSeller" && (differentSellerAccount = !0, com.site.CreateAccountAndLogin.openLoginPopupModal());
+        (t.id == "vinAlreadyExistAsAccepted" || t.id == "publisherVinAlreadyExistAsAccepted" || t.id == "publisherVehicleAlreadyExistAsAccepted" || t.id == "vinAlreadyExistForDifferentSeller") && com.site.Util.isPublisherView() && (t.modalAnswer.DuplicationResponseMessage == "DifferentPublisherSameSellerAcceptedVehicle" || t.modalAnswer.DuplicationResponseMessage == "SameSellerAcceptedVehicle" || t.modalAnswer.DuplicationResponseMessage == "SameSellerListedVehicle" || t.modalAnswer.DuplicationResponseMessage == "SameSellerListedVIN" || t.modalAnswer.DuplicationResponseMessage == "SameSellerAcceptedVIN" || t.modalAnswer.DuplicationResponseMessage == "DifferentSellerOpenVIN" || t.modalAnswer.DuplicationResponseMessage == "DifferentSellerAcceptedVIN" || t.modalAnswer.DuplicationResponseMessage == "DifferentPublisherDifferentSellerOpenVIN" || t.modalAnswer.DuplicationResponseMessage == "DifferentPublisherSameSellerListedVehicle" || t.modalAnswer.DuplicationResponseMessage == "DifferentPublisherSameSellerListedVIN" || t.modalAnswer.DuplicationResponseMessage == "DifferentPublisherDifferentSellerAcceptedVIN" || t.modalAnswer.DuplicationResponseMessage == "DifferentPublisherSameSellerAcceptedVIN") && $("#createAccountLoginModal").modal("hide")
+    }, com.site.CreateAccountAndLogin.setInfoPopUpCancelButtonAction = function(n) {
+        var t = n.call(this)
+    }, com.site.CreateAccountAndLogin.setBooleanPopupLeftButtonAction = function(n) {
+        var t = n.call(this);
+        t.id == "accountAlreadyExist";
+        t.id == "vehicleAlreadyExistAsAccepted" && com.site.CreateAccountAndLogin.createClaimRequest(AccountIdGBL, OfferIdGBL)
+    }, com.site.CreateAccountAndLogin.setBooleanPopupRightButtonAction = function(n) {
+        var t = n.call(this);
+        t.id == "vehicleAlreadyExistAsAccepted" && (com.site.AjaxEngine.showMask = !0, com.site.CreateAccountAndLogin.showModalMask(), window.open(t.modalAnswer.RedirectPage + "?OfferID=" + t.modalAnswer.Claim.ClaimCode + "&zipcode=" + t.modalAnswer.Claim.Location.ZipCode, "_self", !1))
+    }, com.site.CreateAccountAndLogin.setBooleanPopupCancelButtonAction = function(n) {
+        var t = n.call(this);
+        t.id == "vehicleAlreadyExistAsAccepted" && t.postCloseActionRequired && (com.site.CreateAccountAndLogin.enableLoginButton(), com.site.CreateAccountAndLogin.enableCreateAccountButton())
+    }, com.site.CreateAccountAndLogin.postEnableCreateAccountButtonAction = function() {
+        $("#createAccountModalButtonId").addClass("btn-success")
+    }, com.site.CreateAccountAndLogin.postDisableCreateAccountButtonAction = function() {
+        $("#createAccountModalButtonId").removeClass("btn-success")
+    }, com.site.CreateAccountAndLogin.postClickCreateAccountEnableButton = function() {
+        com.site.CreateAccountAndLogin.requestForCreatingAccount()
+    }, com.site.CreateAccountAndLogin.postClickCreateAccountDisableButton = function() {
+        com.site.CreateAccountAndLogin.createAccountPageObj.ErrorMessageText != "" && ($("#createAccountErrorMsg .errorMessageText").html(com.site.CreateAccountAndLogin.createAccountPageObj.ErrorMessageText), $("#createAccountErrorMsg").show())
+    }, com.site.CreateAccountAndLogin.disableCreateAccountButton = function() {
+        com.site.CreateAccountAndLogin.IsSocialLoggedIn ? $("#createAccountModalButtonId").html("Entrando...") : $("#createAccountModalButtonId").html("Criando...");
+        $("#createAccountModalButtonId").attr("disabled", "disabled")
+    }, com.site.CreateAccountAndLogin.enableCreateAccountButton = function() {
+        $("#createAccountModalButtonId").html("Continue");
+        $("#createAccountModalButtonId").removeAttr("disabled")
+    }, com.site.CreateAccountAndLogin.showExistingAccountInLogin = function() {
+        var n = com.site.CreateAccountAndLogin.createAccountPageObj.getInputValue("createAccountEmailInput");
+        com.site.CreateAccountAndLogin.IsAdminView != "" ? com.site.CreateAccountAndLogin.sendDataForAutoLogin() : (setTimeout(function() {
+            $("#loginEmailInput").val(n);
+            $("#loginEmailInput").blur()
+        }, 300), com.site.Util.trackPage("login"), com.site.CreateAccountAndLogin.showLogin(), com.site.Util.addErrorStateToInput("loginPasswordInput", !0), $("#loginErrorMsg").show(), $("#loginErrorMsg .errorMessageText").html("You already have an account. Enter your password."))
+    }, com.site.CreateAccountAndLogin.postEnableLoginButtonAction = function() {
+        $("#loginModalButtonId").addClass("btn-success")
+    }, com.site.CreateAccountAndLogin.postDisableLoginButtonAction = function() {
+        $("#loginModalButtonId").removeClass("btn-success")
+    }, com.site.CreateAccountAndLogin.postClickLoginEnableButton = function() {
+        com.site.CreateAccountAndLogin.requestForLogin()
+    }, com.site.CreateAccountAndLogin.postClickLoginDisableButton = function() {
+        com.site.CreateAccountAndLogin.loginPageObj.ErrorMessageText != "" && ($("#loginErrorMsg .errorMessageText").html(com.site.CreateAccountAndLogin.loginPageObj.ErrorMessageText), $("#loginErrorMsg").show())
+    }, com.site.CreateAccountAndLogin.disableLoginButton = function() {
+        $("#loginModalButtonId").html("Entrando...");
+        $("#loginModalButtonId").attr("disabled", "disabled")
+    }, com.site.CreateAccountAndLogin.enableLoginButton = function() {
+        $("#loginModalButtonId").html("Log in");
+        $("#loginModalButtonId").removeAttr("disabled")
+    }, com.site.CreateAccountAndLogin.requestForCreatingAccount = function() {
+        com.site.CreateAccountAndLogin.IsSocialLoggedIn = !1;
+        com.site.CreateAccountAndLogin.disableCreateAccountButton();
+        com.site.AjaxEngine.showMask = !0;
+        com.site.CreateAccountAndLogin.showModalMask();
+        var n = {};
+        n.Email = com.site.CreateAccountAndLogin.createAccountPageObj.getInputValue("createAccountEmailInput");
+        n.TimeZone = com.site.CreateAccountAndLogin.getTimeZone();
+        com.site.DataService.createAccount(n, com.site.CreateAccountAndLogin.requestForCreatingAccountCallback)
+    }, com.site.CreateAccountAndLogin.requestForCreatingAccountCallback = function(n) {
+        var t = n;
+        t.Success == !0 ? t.IsLogin == !0 ? com.site.CreateAccountAndLogin.performAction(t, "createAccount") : com.site.CreateAccountAndLogin.performAction(t, "createAccount") : com.site.CreateAccountAndLogin.performAction(t, "createAccount")
+    }, com.site.CreateAccountAndLogin.requestForLogin = function() {
+        var t, n;
+        if (!com.site.Util.areCookiesEnabled()) {
+            com.site.CreateAccountAndLogin.infoPopUpModalObj.openModal({
+                id: "cookieDisable"
+            });
+            return
+        }
+        com.site.CreateAccountAndLogin.disableLoginButton();
+        com.site.AjaxEngine.showMask = !0;
+        com.site.CreateAccountAndLogin.showModalMask();
+        t = "0";
+        $("#StayLogIn div").hasClass("checked") && (t = "1");
+        n = {};
+        n.Email = com.site.CreateAccountAndLogin.loginPageObj.getInputValue("loginEmailInput");
+        n.Password = com.site.CreateAccountAndLogin.loginPageObj.getInputValue("loginPasswordInput");
+        n.rememberMe = t;
+        com.site.DataService.login(n, com.site.CreateAccountAndLogin.requestForLoginCallback)
+    }, com.site.CreateAccountAndLogin.requestForLoginCallback = function(n) {
+        var t = n;
+        t.Success == !0 ? com.site.CreateAccountAndLogin.performAction(t, "login") : (t.ErrorMessage ? (com.site.CreateAccountAndLogin.enableLoginButton(), com.site.AjaxEngine.hideLoadingMask(), com.site.CreateAccountAndLogin.hideModalMask(), t.ErrorMessage == "INVALID_EMAIL_OR_PASSWORD_ERROR" ? ($("#loginErrorMsg .errorMessageText").html("Enter valid email address or password."), $("#loginErrorMsg").show()) : ($("#loginErrorMsg .errorMessageText").html(t.ErrorMessage), $("#loginErrorMsg").show())) : com.site.CreateAccountAndLogin.sendDataForCharityLogin(), EventTracking("Login", "Click", "Invalid Email or Password-" + com.site.CreateAccountAndLogin.loginPageObj.getInputValue("loginEmailInput")))
+    }, com.site.CreateAccountAndLogin.sendDataForBuyerLogin = function() {
+        var t, n;
+        com.site.CreateAccountAndLogin.disableLoginButton();
+        com.site.AjaxEngine.showMask = !0;
+        com.site.CreateAccountAndLogin.showModalMask();
+        t = "0";
+        $("#StayLogIn div").hasClass("checked") && (t = "1");
+        n = {};
+        n.Email = com.site.CreateAccountAndLogin.loginPageObj.getInputValue("loginEmailInput");
+        n.Password = com.site.CreateAccountAndLogin.loginPageObj.getInputValue("loginPasswordInput");
+        n.rememberMe = t;
+        com.site.DataService.loginBuyer(n, com.site.CreateAccountAndLogin.sendDataForBuyerLoginCallback)
+    }, com.site.CreateAccountAndLogin.sendDataForBuyerLoginCallback = function(n) {
+        var t = n;
+        if (t.Success == !0) window.open(com.site.Config.PartnerLoginURL, "_self", !1);
+        else {
+            if (com.site.CreateAccountAndLogin.enableLoginButton(), com.site.AjaxEngine.hideLoadingMask(), com.site.CreateAccountAndLogin.hideModalMask(), t.ErrorCode == 16 || t.ErrorCode == 202 || t.ErrorCode == 203 || t.ErrorCode == 204) {
+                $("#loginErrorMsg .errorMessageText").html(t.ErrorMessage);
+                $("#loginErrorMsg").show();
+                return
+            }
+            $("#loginErrorMsg .errorMessageText").html("Enter valid email address or password.");
+            $("#loginErrorMsg").show();
+            EventTracking("Login", "Click", "Invalid Buyer Email or Password-" + com.site.CreateAccountAndLogin.loginPageObj.getInputValue("loginEmailInput"))
+        }
+    }, com.site.CreateAccountAndLogin.sendDataForCharityLogin = function() {
+        var t, n;
+        com.site.CreateAccountAndLogin.disableLoginButton();
+        t = !1;
+        $("#StayLogIn input").attr("checked") === "checked" && (t = !0);
+        n = {};
+        n.Email = com.site.CreateAccountAndLogin.loginPageObj.getInputValue("loginEmailInput");
+        n.Password = com.site.CreateAccountAndLogin.loginPageObj.getInputValue("loginPasswordInput");
+        n.RememberMe = t;
+        com.site.DataService.loginCharity(n, com.site.CreateAccountAndLogin.sendDataForCharityLoginCallback)
+    }, com.site.CreateAccountAndLogin.sendDataForCharityLoginCallback = function(n) {
+        var t = n;
+        t.Success == !0 ? window.open(com.site.Config.CharityLoginURL, "_self", !1) : (com.site.CreateAccountAndLogin.sendDataForBuyerLogin(), EventTracking("Login", "Click", "Invalid Charity Email or Password-" + com.site.CreateAccountAndLogin.loginPageObj.getInputValue("loginEmailInput")))
+    }, com.site.CreateAccountAndLogin.performAction = function(n, t) {
+        if (com.site.Util.resetAgentSessionTimer(), t == "" && (n.Action != 2 || n.Action != 11) ? (com.site.CreateAccountAndLogin.enableCreateAccountButton(), com.site.CreateAccountAndLogin.enableLoginButton(), com.site.AjaxEngine.hideLoadingMask(), com.site.CreateAccountAndLogin.hideModalMask()) : t == "createAccount" && (n.Action != 2 || n.Action != 11) && (com.site.CreateAccountAndLogin.enableCreateAccountButton(), com.site.AjaxEngine.hideLoadingMask(), com.site.CreateAccountAndLogin.hideModalMask()), n.Action == 2) {
+            setTimeout(function() {
+                com.site.CreateAccountAndLogin.showModalMask()
+            }, 10);
+            var r = com.site.Config.EmailHandlerURL,
+                e = com.site.Util.getURLParameter("cmd") || "",
+                u = com.site.Util.getURLParameter("source") || "",
+                f = com.site.Util.getURLParameter("OfferID") || "",
+                i = "";
+            if (e != "" && e != null) {
+                switch (e) {
+                    case "ViewOffer":
+                        i = r + "?cmd=ViewOffer&Source=" + u + "&OfferID=" + f;
+                        break;
+                    case "CancelClaim":
+                        i = r + "?cmd=CancelClaim&Source=" + u + "&OfferID=" + f;
+                    case "ConfirmCancelYes":
+                        i = r + "?cmd=ConfirmCancelYes&Source=" + u + "&OfferID=" + f;
+                        break;
+                    case "ConfirmCancelNo":
+                        i = r + "?cmd=ConfirmCancelNo&Source=" + u + "&OfferID=" + f;
+                        break;
+                    case "SendMeOffers":
+                        i = r + "?cmd=SendMeOffers&Source=" + u + "&OfferID=" + f;
+                        break;
+                    case "LearnMore":
+                        i = r + "?cmd=LearnMore&Source=" + u + "&OfferID=" + f;
+                        break;
+                    case "GetStartedNow":
+                        i = r + "?cmd=GetStartedNow&Source=" + u + "&OfferID=" + f;
+                        break;
+                    case "GetStartedNowOnDecline":
+                        i = r + "?cmd=GetStartedNowOnDecline&Source=" + u + "&OfferID=" + f
+                }
+                window.open(i, "_self", !1);
+                return
+            }
+            window.open(n.RedirectPage, "_self", !1);
+            return
+        }
+        n.Action == 5 ? !differentSellerAccount || !AccountIdGBL || !n.AccountId || AccountIdGBL == n.AccountId ? !differentSellerAccount || !AccountIdGBL || !n.AccountId || AccountIdGBL != n.AccountId ? n.DuplicationResponseMessage == "SameSellerOpenVehicle" || n.DuplicationResponseMessage == "SameSellerOpenVIN" ? com.site.CreateAccountAndLogin.showDuplicateVehicleModal(n) : n.DuplicationResponseMessage == "SameSellerAcceptedVIN" ? com.site.Util.isPublisherView() ? com.site.CreateAccountAndLogin.showPublisherDuplicateVinAcceptedModal(n) : com.site.CreateAccountAndLogin.showDuplicateAcceptedVinModal(n) : n.DuplicationResponseMessage == "SameSellerListedVehicle" || n.DuplicationResponseMessage == "SameSellerListedVIN" ? com.site.Util.isPublisherView() ? n.DuplicationResponseMessage == "SameSellerListedVehicle" ? com.site.CreateAccountAndLogin.showPublisherDuplicateAcceptedVehicleModal(n) : n.DuplicationResponseMessage == "SameSellerListedVIN" && com.site.CreateAccountAndLogin.showPublisherDuplicateVinAcceptedModal(n) : com.site.CreateAccountAndLogin.showDuplicateVehicleModalForListing(n) : n.DuplicationResponseMessage == "DifferentSellerOpenVIN" || n.DuplicationResponseMessage == "DifferentSellerAcceptedVIN" ? com.site.Util.isPublisherView() ? com.site.CreateAccountAndLogin.showPublisherDuplicateVinAcceptedModal(n) : com.site.CreateAccountAndLogin.showDuplicateDifferentSellerVinModal(n) : n.DuplicationResponseMessage == "SameSellerAcceptedVehicle" ? com.site.Util.isPublisherView() ? com.site.CreateAccountAndLogin.showPublisherDuplicateAcceptedVehicleModal(n) : com.site.CreateAccountAndLogin.showDuplicateAcceptedVehicleModal(n) : n.DuplicationResponseMessage == "DifferentPublisherSameSellerOpenVehicle" || n.DuplicationResponseMessage == "DifferentPublisherSameSellerOpenVIN" ? com.site.CreateAccountAndLogin.showDuplicateVehicleModal(n) : n.DuplicationResponseMessage == "DifferentPublisherSameSellerListedVehicle" || n.DuplicationResponseMessage == "DifferentPublisherSameSellerListedVIN" ? com.site.Util.isPublisherView() ? n.DuplicationResponseMessage == "DifferentPublisherSameSellerListedVehicle" ? com.site.CreateAccountAndLogin.showPublisherDuplicateAcceptedVehicleModal(n) : n.DuplicationResponseMessage == "DifferentPublisherSameSellerListedVIN" && com.site.CreateAccountAndLogin.showPublisherDuplicateVinAcceptedModal(n) : com.site.CreateAccountAndLogin.showDuplicateVehicleModalForListing(n) : n.DuplicationResponseMessage == "DifferentPublisherDifferentSellerOpenVIN" || n.DuplicationResponseMessage == "DifferentPublisherDifferentSellerAcceptedVIN" || n.DuplicationResponseMessage == "DifferentPublisherSameSellerAcceptedVIN" ? com.site.CreateAccountAndLogin.showPublisherDuplicateVinAcceptedModal(n) : n.DuplicationResponseMessage == "DifferentPublisherSameSellerAcceptedVehicle" && com.site.CreateAccountAndLogin.showPublisherDuplicateAcceptedVehicleModal(n) : (window.open(com.site.Config.VehicleInfoLink + "?OfferID=" + n.Claim.ClaimCode, "_self", !1), differentSellerAccount = !1) : (com.site.CreateAccountAndLogin.showDuplicateDifferentSellerVinModal(n), differentSellerAccount = !1) : n.Action == 8 ? (AccountIdGBL = n.AccountId, OfferIdGBL = n.OfferId, com.site.CreateAccountAndLogin.enableCreateAccountButton(), com.site.CreateAccountAndLogin.enableLoginButton(), com.site.CreateAccountAndLogin.checkForDuplicateVehicle(AccountIdGBL, OfferIdGBL)) : n.Action == 9 ? (com.site.CreateAccountAndLogin.enableCreateAccountButton(), com.site.AjaxEngine.hideLoadingMask(), com.site.CreateAccountAndLogin.hideModalMask(), com.site.CreateAccountAndLogin.showExistingAccountInLogin()) : n.Action === 10 ? (t == "createAccount" && com.site.CreateAccountAndLogin.enableCreateAccountButton(), t == "login" && com.site.CreateAccountAndLogin.enableLoginButton(), com.site.CreateAccountAndLogin.createClaimRequest(AccountIdGBL, OfferIdGBL)) : n.Action === 11 ? (setTimeout(function() {
+            com.site.CreateAccountAndLogin.showModalMask()
+        }, 10), com.site.CreateAccountAndLogin.disableLoginButton(), com.site.CreateAccountAndLogin.disableCreateAccountButton(), typeof instantOfferPageObj != "undefined" && instantOfferPageObj.getInstantOfferAmount() == 0 ? window.open(com.site.Config.AcceptOfferLink + "?OfferID=" + n.ClaimCode, "_self", !1) : typeof instantOfferSlideVisibility != "undefined" && instantOfferSlideVisibility ? window.open(com.site.Config.AcceptOfferLink + "?OfferID=" + n.ClaimCode, "_self", !1) : window.open(com.site.Config.CustomerHandlerURL + "?OfferID=" + n.ClaimCode, "_self", !1)) : n.Action === 14 ? (com.site.AjaxEngine.hideLoadingMask(), com.site.CreateAccountAndLogin.hideModalMask(), t == "createAccount" ? (com.site.CreateAccountAndLogin.enableLoginButton(), $("#createAccountErrorMsg .errorMessageText").html(n.ErrorMessage), $("#createAccountErrorMsg").show()) : t == "login" ? (com.site.CreateAccountAndLogin.enableLoginButton(), $("#loginErrorMsg .errorMessageText").html(n.ErrorMessage), $("#loginErrorMsg").show()) : $("#loginSectionId").is(":visible") ? (com.site.CreateAccountAndLogin.enableLoginButton(), $("#loginErrorMsg .errorMessageText").html(n.ErrorMessage), $("#loginErrorMsg").show()) : (com.site.CreateAccountAndLogin.enableLoginButton(), $("#createAccountErrorMsg .errorMessageText").html(n.ErrorMessage), $("#createAccountErrorMsg").show())) : n.Action === 15 ? (com.site.AjaxEngine.hideLoadingMask(), com.site.CreateAccountAndLogin.hideModalMask(), $("#accountSectionId").css("display") != "none" ? ($("#createAccountErrorMsg .errorMessageText").html("You must share your email with Peddle to connect with Facebook."), $("#createAccountErrorMsg").show()) : $("#loginSectionId").css("display") != "none" && ($("#loginErrorMsg .errorMessageText").html("You must share your email with Peddle to connect with Facebook."), $("#loginErrorMsg").show())) : n.Action === 16 ? (com.site.AjaxEngine.hideLoadingMask(), com.site.CreateAccountAndLogin.hideModalMask(), $("#accountSectionId").css("display") != "none" ? ($("#createAccountErrorMsg .errorMessageText").html("You must share your email with Peddle to connect with Google."), $("#createAccountErrorMsg").show()) : $("#loginSectionId").css("display") != "none" && ($("#loginErrorMsg .errorMessageText").html("You must share your email with Peddle to connect with Google."), $("#loginErrorMsg").show())) : (com.site.AjaxEngine.hideLoadingMask(), com.site.CreateAccountAndLogin.hideModalMask(), t == "login" && com.site.CreateAccountAndLogin.enableLoginButton())
+    }, com.site.CreateAccountAndLogin.checkForDuplicateVehicle = function(n, t) {
+        com.site.AjaxEngine.showMask = !0;
+        com.site.CreateAccountAndLogin.showModalMask();
+        com.site.CreateAccountAndLogin.disableLoginButton();
+        com.site.CreateAccountAndLogin.disableCreateAccountButton();
+        var i = {};
+        i.AccountId = n;
+        i.OfferId = t;
+        com.site.DataService.checkForDuplicateVehicle(i, com.site.CreateAccountAndLogin.checkForDuplicateVehicleCallback)
+    }, com.site.CreateAccountAndLogin.checkForDuplicateVehicleCallback = function(n) {
+        var t = n;
+        t.Success == !0 ? com.site.CreateAccountAndLogin.performAction(t, "") : (com.site.CreateAccountAndLogin.enableCreateAccountButton(), com.site.CreateAccountAndLogin.enableLoginButton(), com.site.AjaxEngine.hideLoadingMask(), com.site.CreateAccountAndLogin.hideModalMask())
+    }, com.site.CreateAccountAndLogin.transferOwnership = function(n, t, i) {
+        com.site.AjaxEngine.showMask = !0;
+        com.site.CreateAccountAndLogin.showModalMask();
+        com.site.CreateAccountAndLogin.disableLoginButton();
+        com.site.CreateAccountAndLogin.disableCreateAccountButton();
+        var r = {};
+        r.AccountId = n;
+        r.OfferId = t;
+        r.InstantOfferId = i;
+        com.site.DataService.transferOwnership(r, com.site.CreateAccountAndLogin.transferOwnershipCallback)
+    }, com.site.CreateAccountAndLogin.transferOwnershipCallback = function(n) {
+        var t = n;
+        t.Success == !0 ? window.open(t.RedirectPage + "?OfferID=" + t.Claim.ClaimCode, "_self", !1) : (com.site.CreateAccountAndLogin.enableCreateAccountButton(), com.site.CreateAccountAndLogin.enableLoginButton(), com.site.AjaxEngine.hideLoadingMask(), com.site.CreateAccountAndLogin.hideModalMask())
+    }, com.site.CreateAccountAndLogin.createClaimRequest = function(n, t) {
+        com.site.AjaxEngine.showMask = !0;
+        com.site.CreateAccountAndLogin.showModalMask();
+        com.site.CreateAccountAndLogin.disableLoginButton();
+        com.site.CreateAccountAndLogin.disableCreateAccountButton();
+        var i = {};
+        i.AccountId = n;
+        i.OfferId = t;
+        com.site.DataService.createClaimFromOffer(i, com.site.CreateAccountAndLogin.createClaimRequestCallback)
+    }, com.site.CreateAccountAndLogin.createClaimRequestCallback = function(n) {
+        var t = n;
+        t.Success == !0 ? com.site.CreateAccountAndLogin.performAction(t, "") : (com.site.CreateAccountAndLogin.systemErrorPopupOpen(), com.site.CreateAccountAndLogin.enableCreateAccountButton(), com.site.CreateAccountAndLogin.enableLoginButton(), com.site.AjaxEngine.hideLoadingMask(), com.site.CreateAccountAndLogin.hideModalMask())
+    }, com.site.CreateAccountAndLogin.sendDataForAutoLogin = function() {
+        com.site.AjaxEngine.showMask = !0;
+        com.site.CreateAccountAndLogin.showModalMask();
+        com.site.CreateAccountAndLogin.disableLoginButton();
+        com.site.CreateAccountAndLogin.disableCreateAccountButton();
+        var n = {};
+        n.Email = com.site.CreateAccountAndLogin.createAccountPageObj.getInputValue("createAccountEmailInput");
+        com.site.DataService.AutoLoginAgentUsingEmail(n, com.site.CreateAccountAndLogin.sendDataForAutoLoginCallback)
+    }, com.site.CreateAccountAndLogin.sendDataForAutoLoginCallback = function(n) {
+        var t = n;
+        t.Success == !0 ? com.site.CreateAccountAndLogin.performAction(t, "createAccount") : (com.site.CreateAccountAndLogin.systemErrorPopupOpen(), com.site.CreateAccountAndLogin.enableCreateAccountButton(), com.site.CreateAccountAndLogin.enableLoginButton(), com.site.AjaxEngine.hideLoadingMask(), com.site.CreateAccountAndLogin.hideModalMask())
+    }, com.site.CreateAccountAndLogin.isScriptAlreadyIncluded = function(n) {
+        for (var i = document.getElementsByTagName("script"), t = 0; t < i.length; t++)
+            if (i[t].getAttribute("src") == n) return !0;
+        return !1
+    }, com.site.CreateAccountAndLogin.faceBookLoginInitiation = function() {
+        window.fbAsyncInit = function() {
+            FB.init({
+                appId: com.site.Config.FacebookAppId,
+                status: !0,
+                cookie: !0,
+                xfbml: !0,
+                oauth: !0,
+                version: "v2.6"
+            })
+        };
+        com.site.CreateAccountAndLogin.isScriptAlreadyIncluded("//connect.facebook.net/en_US/sdk.js") || function(n) {
+            var t, i = "facebook-jssdk";
+            n.getElementById(i) || (t = n.createElement("script"), t.id = i, t.async = !0, t.src = "//connect.facebook.net/en_US/sdk.js", n.getElementsByTagName("head")[0].appendChild(t))
+        }(document)
+    }, com.site.CreateAccountAndLogin.loginUsingFacebook = function(n) {
+        com.site.CreateAccountAndLogin.loginUsingFacebookClicked = !1;
+        n.authResponse && n.authResponse.accessToken && n.authResponse.accessToken != "" && com.site.CreateAccountAndLogin.getFacebookAuthentication(n.authResponse.accessToken)
+    }, com.site.CreateAccountAndLogin.getFacebookAuthentication = function(n) {
+        com.site.CreateAccountAndLogin.IsSocialLoggedIn = !0;
+        com.site.CreateAccountAndLogin.disableCreateAccountButton();
+        com.site.CreateAccountAndLogin.disableLoginButton();
+        com.site.AjaxEngine.showMask = !0;
+        com.site.CreateAccountAndLogin.showModalMask();
+        var t = {};
+        t.FacebookAuthenticationToken = n;
+        t.TimeZone = com.site.CreateAccountAndLogin.getTimeZone();
+        com.site.DataService.facebookLogin(t, com.site.CreateAccountAndLogin.getFacebookAuthenticationCallback)
+    }, com.site.CreateAccountAndLogin.getFacebookAuthenticationCallback = function(n) {
+        var t = n;
+        t.Success == !0 ? t.IsLogin == !0 ? com.site.CreateAccountAndLogin.performAction(t, "") : com.site.CreateAccountAndLogin.performAction(t, "") : com.site.CreateAccountAndLogin.performAction(t, "")
+    }, com.site.CreateAccountAndLogin.googleLoginInitiation = function() {
+        com.site.CreateAccountAndLogin.isScriptAlreadyIncluded("https://apis.google.com/js/api:client.js") || function(n) {
+            var t, i = "google-jsapi";
+            n.getElementById(i) || (t = n.createElement("script"), t.id = i, t.async = !0, t.src = "https://apis.google.com/js/api:client.js?onload=startApp", n.getElementsByTagName("head")[0].appendChild(t))
+        }(document);
+        googleUser = {};
+        startApp = function() {
+            gapi.load("auth2", function() {
+                auth2 = gapi.auth2.init({
+                    client_id: com.site.Config.GoogleClientId,
+                    cookiepolicy: "single_host_origin",
+                    scope: "profile email"
+                });
+                com.site.CreateAccountAndLogin.attachSignin(document.getElementById("googleLogInButtonId"));
+                com.site.CreateAccountAndLogin.attachSignin(document.getElementById("googleSignOnButtonId"))
+            })
+        }
+    }, com.site.CreateAccountAndLogin.attachSignin = function(n) {
+        auth2.attachClickHandler(n, {}, function(t) {
+            var i = t.getAuthResponse().access_token;
+            EventTracking("Login", "Click", "Login/sign on Using Google");
+            com.site.CreateAccountAndLogin.loginUsingGoogleButtonType = n.id == "googleSignOnButtonId" ? "createAccount" : "login";
+            com.site.CreateAccountAndLogin.getGoogleAuthentication(i)
+        })
+    }, com.site.CreateAccountAndLogin.getGoogleAuthentication = function(n) {
+        com.site.CreateAccountAndLogin.IsSocialLoggedIn = !0;
+        com.site.CreateAccountAndLogin.disableCreateAccountButton();
+        com.site.CreateAccountAndLogin.disableLoginButton();
+        com.site.AjaxEngine.showMask = !0;
+        com.site.CreateAccountAndLogin.showModalMask();
+        var t = {};
+        t.GoogleAuthenticationToken = n;
+        t.TimeZone = com.site.CreateAccountAndLogin.getTimeZone();
+        com.site.DataService.googleLogin(t, com.site.CreateAccountAndLogin.getGoogleAuthenticationCallback)
+    }, com.site.CreateAccountAndLogin.getGoogleAuthenticationCallback = function(n) {
+        var t = n;
+        t.Success == !0 ? t.IsLogin == !0 ? com.site.CreateAccountAndLogin.performAction(t, "") : com.site.CreateAccountAndLogin.performAction(t, "") : com.site.CreateAccountAndLogin.performAction(t, "")
+    }, com.site.CreateAccountAndLogin.AttachEventsOnCreateAccountAndLogin = function() {
+        var n = !1;
+        $("#createAccountModalButtonId, #loginModalButtonId").bind("touchstart touchend", function() {
+            $(this).toggleClass("buttonTapClass")
+        });
+        $("#createAccountModalButtonId").on("click tap", function() {
+            if (!n) return n = !0, setTimeout(function() {
+                n = !1
+            }, 100), com.site.CreateAccountAndLogin.createAccountPageObj.createAccountButtonAction(), !1
+        });
+        $("#loginModalButtonId").on("click tap", function() {
+            if (!n) return n = !0, setTimeout(function() {
+                n = !1
+            }, 100), com.site.CreateAccountAndLogin.loginPageObj.loginButtonAction(), !1
+        });
+        $("#createAccountLoginModal").on("hide.bs.modal", function() {
+            com.site.CreateAccountAndLogin.showLogin();
+            com.site.CreateAccountAndLogin.showCreateAccount()
+        });
+        $("#loginLinkIO, #createAccountLinkIO, #forgetPasswordLinkIO, #returnToLoginLinkIO").on("click tap", function() {
+            if (!n) return n = !0, setTimeout(function() {
+                n = !1
+            }, 100), this.id == "loginLinkIO" && (com.site.Util.trackPage("login"), com.site.CreateAccountAndLogin.showLogin()), this.id == "createAccountLinkIO" && (com.site.Util.trackPage("createaccount"), com.site.CreateAccountAndLogin.showCreateAccount()), this.id == "forgetPasswordLinkIO" && (com.site.Util.trackPage("forgotpassword"), com.site.CreateAccountAndLogin.showForgotPassword()), this.id == "returnToLoginLinkIO" && (com.site.Util.trackPage("login"), com.site.CreateAccountAndLogin.showLogin()), !1
+        });
+        $("#facebookLogInButtonId, #facebookSignOnButtonId").on("click tap", function() {
+            if (!n) return n = !0, setTimeout(function() {
+                n = !1
+            }, 100), com.site.CreateAccountAndLogin.loginUsingFacebookClicked || typeof FB != "object" || (EventTracking("Login", "Click", "Login/sign on Using Facebook"), com.site.CreateAccountAndLogin.loginUsingFacebookClicked = !0, com.site.CreateAccountAndLogin.loginUsingFacebookButtonType = this.id == "facebookSignOnButtonId" ? "createAccount" : "login", FB.login(com.site.CreateAccountAndLogin.loginUsingFacebook, {
+                scope: "email"
+            })), !1
+        });
+        $(".createAccountLoginErrorMsgCancel").on("click tap", function() {
+            if (!n) return n = !0, setTimeout(function() {
+                n = !1
+            }, 100), !1
+        });
+        jQuery.browser.mobile || (com.site.Util.initKeyNavigationPlugin("#accountSectionId"), com.site.Util.initKeyNavigationPlugin("#loginSectionId"), com.site.Util.initKeyNavigationPlugin("#forgotPasswordSectionId"))
+    }, com.site.CreateAccountAndLogin.openLoginPopupModal = function() {
+        com.site.CreateAccountAndLogin.faceBookLoginInitiation();
+        com.site.CreateAccountAndLogin.googleLoginInitiation();
+        com.site.CreateAccountAndLogin.loginPageObj.resetAllInput();
+        com.site.CreateAccountAndLogin.createAccountPageObj.resetAllInput();
+        forgotPasswordPageObj.resetAllInput();
+        $("#createAccountLoginModal").append($("#accountSectionId"));
+        $("#createAccountLoginModal").append($("#forgotPasswordSectionId"));
+        $("#accountSectionId").hide();
+        $("#forgotPasswordSectionId").hide();
+        $("#loginSectionId").show();
+        com.site.CreateAccountAndLogin.attachAllModalsEvent("createAccountLoginModal");
+        $("#createAccountLoginModal").modal("show");
+        jQuery.browser.mobile || $("#loginEmailInput").focus();
+        $("#menu").trigger("close")
+    }, com.site.CreateAccountAndLogin.openCreateAccountPopupModal = function() {
+        com.site.CreateAccountAndLogin.faceBookLoginInitiation();
+        com.site.CreateAccountAndLogin.googleLoginInitiation();
+        com.site.CreateAccountAndLogin.loginPageObj.resetAllInput();
+        com.site.CreateAccountAndLogin.createAccountPageObj.resetAllInput();
+        forgotPasswordPageObj.resetAllInput();
+        $("#createAccountLoginModal").append($("#loginSectionId"));
+        $("#createAccountLoginModal").append($("#forgotPasswordSectionId"));
+        $("#loginSectionId").hide();
+        $("#forgotPasswordSectionId").hide();
+        $("#accountSectionId").show();
+        com.site.CreateAccountAndLogin.attachAllModalsEvent("createAccountLoginModal");
+        $("#createAccountLoginModal").modal("show");
+        jQuery.browser.mobile || $("#createAccountEmailInput").focus();
+        $("#menu").trigger("close")
+    }, com.site.CreateAccountAndLogin.showModalMask = function() {
+        com.site.AjaxEngine.showMask = !1;
+        com.site.Util.showFullPageLoadingMask()
+    }, com.site.CreateAccountAndLogin.hideModalMask = function() {
+        com.site.AjaxEngine.hideLoadingMask()
+    }, com.site.CreateAccountAndLogin.attachAllModalsEvent = function(n) {
+        if (com.site.Util.isiPhone() && $("#createAccountLoginModal").addClass("modalScrollIssueInIOS"), jQuery.browser.mobile) {
+            $("#" + n).on("hidden.bs.modal", function() {
+                $("body").removeClass("positionFixedClass")
+            });
+            $("#" + n).on("shown.bs.modal", function() {
+                $("body").addClass("positionFixedClass")
+            })
+        }
+    }, $(document).ready(function() {
+        com.site.CreateAccountAndLogin.IsAdminView = $("#adminUser").val();
+        com.site.CreateAccountAndLogin.loginPageInit = {
+            postEnableButton: com.site.CreateAccountAndLogin.postEnableLoginButtonAction,
+            postDisableButton: com.site.CreateAccountAndLogin.postDisableLoginButtonAction,
+            postClickEnableButton: com.site.CreateAccountAndLogin.postClickLoginEnableButton,
+            postClickDisableButton: com.site.CreateAccountAndLogin.postClickLoginDisableButton
+        };
+        com.site.CreateAccountAndLogin.loginPageObj = new com.site.Login.LoginControl(com.site.CreateAccountAndLogin.loginPageInit);
+        com.site.CreateAccountAndLogin.createAccountPageInit = {
+            postEnableButton: com.site.CreateAccountAndLogin.postEnableCreateAccountButtonAction,
+            postDisableButton: com.site.CreateAccountAndLogin.postDisableCreateAccountButtonAction,
+            postClickEnableButton: com.site.CreateAccountAndLogin.postClickCreateAccountEnableButton,
+            postClickDisableButton: com.site.CreateAccountAndLogin.postClickCreateAccountDisableButton
+        };
+        com.site.CreateAccountAndLogin.createAccountPageObj = new com.site.CreateAccount.CreateAccountControl(com.site.CreateAccountAndLogin.createAccountPageInit);
+        com.site.CreateAccountAndLogin.infoPopUpModalInit = {
+            setSuccessButtonAction: com.site.CreateAccountAndLogin.setInfoPopUpSuccessButtonAction,
+            setCancelButtonAction: com.site.CreateAccountAndLogin.setInfoPopUpCancelButtonAction
+        };
+        com.site.CreateAccountAndLogin.infoPopUpModalObj = new com.site.Modal.InfoPopUpModalControl(com.site.CreateAccountAndLogin.infoPopUpModalInit);
+        com.site.CreateAccountAndLogin.booleanPopUpModalInit = {
+            setLeftButtonAction: com.site.CreateAccountAndLogin.setBooleanPopupLeftButtonAction,
+            setRightButtonAction: com.site.CreateAccountAndLogin.setBooleanPopupRightButtonAction,
+            setCancelButtonAction: com.site.CreateAccountAndLogin.setBooleanPopupCancelButtonAction
+        };
+        com.site.CreateAccountAndLogin.booleanPopUpModalObj = new com.site.Modal.BooleanPopUpModalControl(com.site.CreateAccountAndLogin.booleanPopUpModalInit);
+        com.site.CreateAccountAndLogin.AttachEventsOnCreateAccountAndLogin();
+        $("#StayLogIn input").iCheck({
+            checkboxClass: "icheckbox_minimal-blue",
+            radioClass: "iradio_minimal-blue",
+            increaseArea: "20%"
+        });
+        $("#StayLogIn input").iCheck("check")
+    }), com) {
+    if (typeof com != "object") throw new Error("com already exists and is not an object");
+} else com = {};
+if (com.site) {
+    if (typeof com.site != "object") throw new Error("com.site already exists and is not an object");
+} else com.site = {};
+if (com.site.ForgotPassword) {
+    if (typeof com.site.ForgotPassword != "object") throw new Error("com.site.ForgotPassword already exists and is not an object");
+} else com.site.ForgotPassword = {};
+if (com.site.ForgotPassword.forgotPasswordQuestionProperty = [{
+        name: "fpEmailInput",
+        isVisible: !0,
+        answer: "",
+        setAnswer: function(n) {
+            this.answer = n
+        },
+        getAnswer: function() {
+            return this.answer
+        }
+    }], com.site.ForgotPassword.ForgotPasswordControl = function(n) {
+        this.postEnableButton = n.postEnableButton;
+        this.postDisableButton = n.postDisableButton;
+        this.postClickEnableButton = n.postClickEnableButton;
+        this.postClickDisableButton = n.postClickDisableButton;
+        this.FPId = com.site.ForgotPassword.forgotPasswordQuestionProperty;
+        this.AttachForgotPasswordEvents();
+        this.ErrorMessageText = ""
+    }, com.site.ForgotPassword.ForgotPasswordControl.prototype = {
+        getInputIndexFromName: function(n) {
+            for (var t = 0; t < this.FPId.length; t++)
+                if (this.FPId[t].name == n) return t;
+            return null
+        },
+        getInputValue: function(n) {
+            var t = this.getInputIndexFromName(n);
+            return this.FPId[t].getAnswer()
+        },
+        setInputValue: function(n, t) {
+            $("#fpEmailInput").val(t);
+            this.validateInput(n, !1, !0);
+            this.checkAllAnswerSet()
+        },
+        resetButtonAction: function() {
+            this.validateInput("fpEmailInput", !1, !0);
+            this.IsAllAnsweredSet() === !0 ? this.postClickEnableButton() : (this.ErrorMessageText = "", this.highLightError(), this.postClickDisableButton())
+        },
+        highLightError: function() {
+            this.validateInput("fpEmailInput", !0, !0)
+        },
+        hideCustomErrorAlert: function() {
+            $("#forgotPasswordErrorMsg .errorMessageText").html("");
+            $("#forgotPasswordErrorMsg").hide()
+        },
+        IsAllAnsweredSet: function() {
+            for (var t, n = 0; n < this.FPId.length; n++)
+                if (t = this.FPId[n], t.isVisible && t.answer == "") return n;
+            return !0
+        },
+        validateInput: function(n, t, i) {
+            var r = this.getInputIndexFromName(n),
+                u = $.trim($("#" + n).val());
+            return com.site.Util.isBlank(n) ? (this.FPId[r].setAnswer(""), i || (com.site.Util.removeErrorStateToInput(n, !0), this.hideCustomErrorAlert()), t && (com.site.Util.addErrorStateToInput(n, !0), this.ErrorMessageText = "Enter a valid email address."), !1) : com.site.Util.isValidEmail(u) ? (this.FPId[r].setAnswer($.trim($("#" + n).val())), com.site.Util.addSuccessStateToInput(n, !0), !0) : (this.FPId[r].setAnswer(""), (i || t) && (com.site.Util.addErrorStateToInput(n, !0), this.ErrorMessageText == "" ? this.ErrorMessageText = "Enter valid email address." : ""), !1)
+        },
+        enableButton: function() {
+            this.postEnableButton()
+        },
+        disableButton: function() {
+            this.postDisableButton()
+        },
+        checkAllAnswerSet: function() {
+            if (this.IsAllAnsweredSet() === !0) {
+                this.enableButton();
+                return
+            }
+            this.disableButton()
+        },
+        resetAllInput: function() {
+            $("#fpEmailInput").val("");
+            com.site.Util.resetInputState("fpEmailInput", !0);
+            this.validateInput("fpEmailInput", !1, !1);
+            this.checkAllAnswerSet()
+        },
+        AttachForgotPasswordEvents: function() {
+            var n = this,
+                t = !1;
+            n.resetAllInput();
+            $("#fpEmailInput").bind({
+                blur: function() {
+                    var t = this;
+                    setTimeout(function() {
+                        n.validateInput(t.id, !1, !0);
+                        n.checkAllAnswerSet()
+                    }, 150, t)
+                },
+                keyup: function() {
+                    com.site.Util.removeErrorStateToInput(this.id, !0);
+                    n.checkAllAnswerSet()
+                },
+                keydown: function(t) {
+                    var i = com.site.Util.getKeyCode(t),
+                        r = this;
+                    setTimeout(function() {
+                        i == com.site.Config.ENTER_KEY_CODE && (n.validateInput("fpEmailInput", !1, !1), n.IsAllAnsweredSet() === !0 && n.postClickEnableButton())
+                    }, 0, r, i)
+                },
+                paste: function() {
+                    var t = this;
+                    setTimeout(function() {
+                        com.site.Util.removeErrorStateToInput(this.id, !0);
+                        n.validateInput(t.id, !1, !1);
+                        n.checkAllAnswerSet()
+                    }, 50, t)
+                }
+            });
+            $("#resetBtn").bind("touchstart touchend", function() {
+                $(this).toggleClass("buttonTapClass")
+            });
+            t = !1;
+            $("#resetBtn").on("click tap", function() {
+                if (!t) return t = !0, com.site.ForgotPassword.fromModal = $(this).hasClass("forgotPasswordModalResetBtn") ? !0 : !1, setTimeout(function() {
+                    t = !1
+                }, 100), n.resetButtonAction(), !1
+            })
+        }
+    }, com.site.ForgotPassword.postEnableButtonAction = function() {
+        $("#slideError").fadeOut();
+        $("#resetBtn").addClass("btn-success")
+    }, com.site.ForgotPassword.postDisableButtonAction = function() {
+        $("#resetBtn").removeClass("btn-success")
+    }, com.site.ForgotPassword.postClickEnableButton = function() {
+        com.site.ForgotPassword.requestForPasswordLink()
+    }, com.site.ForgotPassword.postClickDisableButton = function() {
+        forgotPasswordPageObj.ErrorMessageText != "" && ($("#forgotPasswordErrorMsg .errorMessageText").html(forgotPasswordPageObj.ErrorMessageText), $("#forgotPasswordErrorMsg").show())
+    }, com.site.ForgotPassword.disableForgotPasswordButton = function() {
+        $("#resetBtn").html("Sending...");
+        $("#resetBtn").attr("disabled", "disabled")
+    }, com.site.ForgotPassword.enableForgotPasswordButton = function() {
+        $("#resetBtn").html("Submit");
+        $("#resetBtn").removeAttr("disabled")
+    }, com.site.ForgotPassword.showResetPasswordPopUp = function() {
+        infoPopUpModalObj.openModal({
+            id: "forgotPasswordEmailSent"
+        })
+    }, com.site.ForgotPassword.showEmailNotSentPopUp = function() {
+        infoPopUpModalObj.openModal({
+            id: "forgotPasswordEmailNotSent"
+        })
+    }, com.site.ForgotPassword.setInfoPopUpSuccessButtonAction = function(n) {
+        var t = n.call(this);
+        t.id == "forgotPasswordEmailSent" && (com.site.ForgotPassword.fromModal ? com.site.CreateAccountAndLogin.showLogin() : window.open(com.site.Config.LogInLink, "_self", !1));
+        t.id == "forgotPasswordEmailNotSent" && com.site.ForgotPassword.requestForPasswordLink()
+    }, com.site.ForgotPassword.setInfoPopUpCancelButtonAction = function(n) {
+        var t = n.call(this);
+        com.site.ForgotPassword.fromModal ? com.site.CreateAccountAndLogin.showLogin() : window.open(com.site.Config.LogInLink, "_self", !1)
+    }, com.site.ForgotPassword.requestForPasswordLink = function() {
+        com.site.ForgotPassword.disableForgotPasswordButton();
+        var n = {};
+        n.Email = forgotPasswordPageObj.getInputValue("fpEmailInput");
+        com.site.DataService.sendForgotPasswordLink(n, com.site.ForgotPassword.requestForPasswordLinkCallback)
+    }, com.site.ForgotPassword.requestForPasswordLinkCallback = function(n) {
+        com.site.ForgotPassword.enableForgotPasswordButton();
+        var t = n;
+        t.Success == !0 ? com.site.ForgotPassword.showResetPasswordPopUp() : com.site.ForgotPassword.performAction(t)
+    }, com.site.ForgotPassword.performAction = function(n) {
+        n.Action == 1 ? com.site.ForgotPassword.showEmailNotSentPopUp() : n.Action == 3 ? (com.site.Util.addErrorStateToInput("fpEmailInput", !0), $(".errorMessageText").html("Enter valid email address."), $(".errorMessageAlert").show()) : n.Action === 14 ? ($(".errorMessageText").html(n.ErrorMessage), $(".errorMessageAlert").show()) : com.site.ForgotPassword.showEmailNotSentPopUp()
+    }, $(document).ready(function() {
+        infoPopUpModalInit = {
+            setSuccessButtonAction: com.site.ForgotPassword.setInfoPopUpSuccessButtonAction,
+            setCancelButtonAction: com.site.ForgotPassword.setInfoPopUpCancelButtonAction
+        };
+        infoPopUpModalObj = new com.site.Modal.InfoPopUpModalControl(infoPopUpModalInit);
+        forgotPasswordPageInit = {
+            postEnableButton: com.site.ForgotPassword.postEnableButtonAction,
+            postDisableButton: com.site.ForgotPassword.postDisableButtonAction,
+            postClickEnableButton: com.site.ForgotPassword.postClickEnableButton,
+            postClickDisableButton: com.site.ForgotPassword.postClickDisableButton
+        };
+        forgotPasswordPageObj = new com.site.ForgotPassword.ForgotPasswordControl(forgotPasswordPageInit)
+    }), com) {
+    if (typeof com != "object") throw new Error("com already exists and is not an object");
+} else com = {};
+if (com.site) {
+    if (typeof com.site != "object") throw new Error("com.site already exists and is not an object");
+} else com.site = {};
+if (com.site.Home) {
+    if (typeof com.site.Home != "object") throw new Error("com.site.Home already exists and is not an object");
+} else com.site.Home = {};
+lastAdjustedVolume = "";
+ipadFullScreen = !1;
+$(window).resize(function() {
+    if (ipadFullScreen) {
+        var n = $(window).height() - 250;
+        $("#peddleVideo_html5_api").css("height", n)
+    }
+});
+$(window).scroll(function() {
+    $(".customVolumeIcon").tooltipster("hide")
+});
+com.site.Home.setDefaultImage = function(n) {
+    $("#" + n).parent().find(".recentCarImage").css("background", "url(/images/carNotAvailableImage.png)");
+    $("#" + n).attr("src", "/images/carNotAvailableImage.png")
+};
+com.site.Home.isScriptAlreadyIncluded = function(n) {
+    for (var i = document.getElementsByTagName("script"), t = 0; t < i.length; t++)
+        if (i[t].getAttribute("src") == n) return !0;
+    return !1
+};
+com.site.Home.videoPlay = function() {
+    $("#peddleVideo_html5_api").css("height", "auto");
+    $("#peddleVideo_html5_api").css("position", "relative");
+    $("#peddleVideoModal").animate({
+        height: $("#peddleVideo").height() + 80
+    }, {
+        duration: 500,
+        start: function() {
+            $(window).scrollTop(0);
+            $(".video-js").css("opacity", "1");
+            $(".video-js")[0].player.play();
+            $(".peddleVideoModal").css("z-index", "1000");
+            $("#peddleVideoModal .container").css("padding", "125px 0")
+        },
+        step: function() {},
+        complete: function() {
+            $("#peddleVideoModal").css("height", "auto");
+            var n = $(".road").offset().top + $(".road").height() - $(".peddleHeader").height();
+            $("#peddleVideoModal").css("min-height", n);
+            $(".peddleHeader").removeClass("mm-fixed-top")
+        }
+    });
+    attatchVideoController()
+};
+$(document).ready(function() {
+    var t, i, n, r;
+    com.site.Util.trackPage("home");
+    $(".headerHomeLink, .headerHowItWorksLink, .headerTestimonialsLink").attr("href", "#");
+    attachScrolling();
+    subscribe();
+    t = !$("#hdnSocialNetworkDataResponse").val() ? "" : unescape($("#hdnSocialNetworkDataResponse").val());
+    i = !$("#hdnRecentlyPeddleCars").val() ? "" : unescape($("#hdnRecentlyPeddleCars").val());
+    !t || getSocialNetworkDataCallback($.parseJSON(t));
+    !i || getRecentlyPeddleCarInfoCallback($.parseJSON(i));
+    n = window.location.hash;
+    n + "" == "#how-it-works" ? $(".headerHowItWorksLink").click() : n + "" == "#testimonials" ? $(".headerTestimonialsLink").click() : com.site.Util.checkDigits(n.replace(/^\D+/g, "")) && (window.location = "/");
+    $("#peddleVideo_html5_api").css("height", "0");
+    $("#peddleVideo_html5_api").css("position", "absolute");
+    $(".peddleHeader").addClass("mm-fixed-top");
+    $(".getAnOffer").click(function(n) {
+        return window.open(com.site.Config.VehicleInfoLink, "_self"), n.stopPropagation(), !1
+    });
+    r = navigator.userAgent.match(/iPad/i) != null;
+    $("#watchVideo, .getAnOffer").bind("touchstart touchend", function() {
+        $(this).toggleClass("buttonTapClass")
+    });
+    $(".buyaNewCarLink").bind("touchstart touchend", function() {
+        $(this).toggleClass("buyaNewCarLinkHover")
+    });
+    $("#watchVideo").click(function() {
+        $("#peddleVideo").addClass("peddleVideo");
+        com.site.Home.isScriptAlreadyIncluded("/Scripts/Plugins/VideoPlugin/video.js") || function(n) {
+            var t, i = "videoPluginId";
+            n.getElementById(i) || (t = n.createElement("script"), t.id = i, t.async = !0, t.src = "/Scripts/Plugins/VideoPlugin/video.js", n.getElementsByTagName("head")[0].appendChild(t))
+        }(document);
+        var n = function() {
+            "undefined" == typeof $(".video-js")[0].player || "undefined" == typeof jQuery ? window.setTimeout(n, 50) : com.site.Home.videoPlay()
+        };
+        n()
+    });
+    $("#videoPopupClose").click(function() {
+        $("#peddleVideoModal").animate({
+            height: 0
+        }, {
+            duration: 500,
+            start: function() {
+                $(".video-js")[0].player.pause();
+                $("#peddleVideoModal").css("min-height", "0")
+            },
+            step: function() {},
+            complete: function() {
+                $(".video-js").css("opacity", "0");
+                $(".peddleHeader").addClass("mm-fixed-top");
+                $(".peddleVideoModal").css("z-index", "1");
+                $("#peddleVideoModal .container").css("padding", "0");
+                $("#peddleVideo_html5_api").css("height", "0");
+                $("#peddleVideo_html5_api").css("position", "absolute");
+                $("#peddleVideo").removeClass("peddleVideo")
+            }
+        })
+    });
+    com.site.Util.shuffleSelection(".shuffPopularVehicles");
+    com.site.Util.shuffleSelection(".shuffPopularSearches");
+    com.site.Util.shuffleSelection(".shuffPopularCity");
+    com.site.Menu.checkForPubliserIdAvailability();
+    $(".cloudContainer, .city, .roadContainer, #howItWorks, .mapStyleBg, #testimonials, .greyBgStyle, .footerContainer").bind("touchstart", function() {
+        $(".headerPopover").tooltipster("hide")
+    });
+    $(".illustration, div.mapStyleBg, div.chatterImgBG").lazyload({
+        threshold: 200
+    })
+})

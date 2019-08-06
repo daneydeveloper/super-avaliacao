@@ -1,0 +1,14 @@
+{
+  "name": "Peddle",
+  "icons": [
+    {
+      "src": "/Images/PeddleLogoAddToHome.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "density": "1.0"
+    }
+  ],
+  "start_url": "/",
+  "display": "standalone",
+  "orientation": "portrait"
+}

@@ -1,0 +1,1481 @@
+<!DOCTYPE html>
+<html>
+   <meta http-equiv="content-type" content="text/html;charset=utf-8" />
+   <head>
+      <meta name="viewport" content="width=device-width, initial-scale = 1 , maximum-scale=1, , maximum-scale = 1, user-scalable = 0" />
+      <meta name="apple-mobile-web-app-title" content="Peddle" />
+      <!-- <link rel="apple-touch-icon-precomposed" type="image/png" sizes="32x32" href="/Images/PeddleLogoAddToHome.png" /> -->
+      <meta name="apple-touch-icon" content="yes" />
+      <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+      <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+      <meta Http-Equiv="Cache-Control" content="no-cache" />
+      <meta Http-Equiv="Pragma" content="no-cache" />
+      <meta Http-Equiv="Expires" content="0" />
+      <meta property="og:image" content="images/home/logo-foto.png" />
+      <link rel="icon" type="image/png" href="images/home/logo.png" />
+      <link rel="apple-touch-icon-precomposed" type="image/png" sizes="144x144" href="images/home/logo.png?v=2" />
+      <link rel="manifest" href="manifest.json" />
+      <meta http-equiv="Content-type" content="text/html;charset=UTF-8" />
+      <script type="text/javascript">window.NREUM||(NREUM={});NREUM.info = {"beacon":"bam.nr-data.net","errorBeacon":"bam.nr-data.net","licenseKey":"03b472d539","applicationID":"4523310","transactionName":"NFVaMkoFDUVWUhELXg0feTVoSwtZWlRLA0ITSA==","queueTime":0,"applicationTime":5,"agent":"","atts":""}</script><script type="text/javascript">(window.NREUM||(NREUM={})).loader_config={xpid:"UwcHU1ZADAYCV1JTBw=="};window.NREUM||(NREUM={}),__nr_require=function(t,n,e){function r(e){if(!n[e]){var o=n[e]={exports:{}};t[e][0].call(o.exports,function(n){var o=t[e][1][n];return r(o||n)},o,o.exports)}return n[e].exports}if("function"==typeof __nr_require)return __nr_require;for(var o=0;o<e.length;o++)r(e[o]);return r}({1:[function(t,n,e){function r(t){try{s.console&&console.log(t)}catch(n){}}var o,i=t("ee"),a=t(15),s={};try{o=localStorage.getItem("__nr_flags").split(","),console&&"function"==typeof console.log&&(s.console=!0,o.indexOf("dev")!==-1&&(s.dev=!0),o.indexOf("nr_dev")!==-1&&(s.nrDev=!0))}catch(c){}s.nrDev&&i.on("internal-error",function(t){r(t.stack)}),s.dev&&i.on("fn-err",function(t,n,e){r(e.stack)}),s.dev&&(r("NR AGENT IN DEVELOPMENT MODE"),r("flags: "+a(s,function(t,n){return t}).join(", ")))},{}],2:[function(t,n,e){function r(t,n,e,r,o){try{d?d-=1:i("err",[o||new UncaughtException(t,n,e)])}catch(s){try{i("ierr",[s,c.now(),!0])}catch(u){}}return"function"==typeof f&&f.apply(this,a(arguments))}function UncaughtException(t,n,e){this.message=t||"Uncaught error with no additional information",this.sourceURL=n,this.line=e}function o(t){i("err",[t,c.now()])}var i=t("handle"),a=t(16),s=t("ee"),c=t("loader"),f=window.onerror,u=!1,d=0;c.features.err=!0,t(1),window.onerror=r;try{throw new Error}catch(l){"stack"in l&&(t(8),t(7),"addEventListener"in window&&t(5),c.xhrWrappable&&t(9),u=!0)}s.on("fn-start",function(t,n,e){u&&(d+=1)}),s.on("fn-err",function(t,n,e){u&&(this.thrown=!0,o(e))}),s.on("fn-end",function(){u&&!this.thrown&&d>0&&(d-=1)}),s.on("internal-error",function(t){i("ierr",[t,c.now(),!0])})},{}],3:[function(t,n,e){t("loader").features.ins=!0},{}],4:[function(t,n,e){function r(t){}if(window.performance&&window.performance.timing&&window.performance.getEntriesByType){var o=t("ee"),i=t("handle"),a=t(8),s=t(7),c="learResourceTimings",f="addEventListener",u="resourcetimingbufferfull",d="bstResource",l="resource",p="-start",h="-end",m="fn"+p,w="fn"+h,v="bstTimer",y="pushState",g=t("loader");g.features.stn=!0,t(6);var b=NREUM.o.EV;o.on(m,function(t,n){var e=t[0];e instanceof b&&(this.bstStart=g.now())}),o.on(w,function(t,n){var e=t[0];e instanceof b&&i("bst",[e,n,this.bstStart,g.now()])}),a.on(m,function(t,n,e){this.bstStart=g.now(),this.bstType=e}),a.on(w,function(t,n){i(v,[n,this.bstStart,g.now(),this.bstType])}),s.on(m,function(){this.bstStart=g.now()}),s.on(w,function(t,n){i(v,[n,this.bstStart,g.now(),"requestAnimationFrame"])}),o.on(y+p,function(t){this.time=g.now(),this.startPath=location.pathname+location.hash}),o.on(y+h,function(t){i("bstHist",[location.pathname+location.hash,this.startPath,this.time])}),f in window.performance&&(window.performance["c"+c]?window.performance[f](u,function(t){i(d,[window.performance.getEntriesByType(l)]),window.performance["c"+c]()},!1):window.performance[f]("webkit"+u,function(t){i(d,[window.performance.getEntriesByType(l)]),window.performance["webkitC"+c]()},!1)),document[f]("scroll",r,{passive:!0}),document[f]("keypress",r,!1),document[f]("click",r,!1)}},{}],5:[function(t,n,e){function r(t){for(var n=t;n&&!n.hasOwnProperty(u);)n=Object.getPrototypeOf(n);n&&o(n)}function o(t){s.inPlace(t,[u,d],"-",i)}function i(t,n){return t[1]}var a=t("ee").get("events"),s=t(18)(a,!0),c=t("gos"),f=XMLHttpRequest,u="addEventListener",d="removeEventListener";n.exports=a,"getPrototypeOf"in Object?(r(document),r(window),r(f.prototype)):f.prototype.hasOwnProperty(u)&&(o(window),o(f.prototype)),a.on(u+"-start",function(t,n){var e=t[1],r=c(e,"nr@wrapped",function(){function t(){if("function"==typeof e.handleEvent)return e.handleEvent.apply(e,arguments)}var n={object:t,"function":e}[typeof e];return n?s(n,"fn-",null,n.name||"anonymous"):e});this.wrapped=t[1]=r}),a.on(d+"-start",function(t){t[1]=this.wrapped||t[1]})},{}],6:[function(t,n,e){var r=t("ee").get("history"),o=t(18)(r);n.exports=r,o.inPlace(window.history,["pushState","replaceState"],"-")},{}],7:[function(t,n,e){var r=t("ee").get("raf"),o=t(18)(r),i="equestAnimationFrame";n.exports=r,o.inPlace(window,["r"+i,"mozR"+i,"webkitR"+i,"msR"+i],"raf-"),r.on("raf-start",function(t){t[0]=o(t[0],"fn-")})},{}],8:[function(t,n,e){function r(t,n,e){t[0]=a(t[0],"fn-",null,e)}function o(t,n,e){this.method=e,this.timerDuration="number"==typeof t[1]?t[1]:0,t[0]=a(t[0],"fn-",this,e)}var i=t("ee").get("timer"),a=t(18)(i),s="setTimeout",c="setInterval",f="clearTimeout",u="-start",d="-";n.exports=i,a.inPlace(window,[s,"setImmediate"],s+d),a.inPlace(window,[c],c+d),a.inPlace(window,[f,"clearImmediate"],f+d),i.on(c+u,r),i.on(s+u,o)},{}],9:[function(t,n,e){function r(t,n){d.inPlace(n,["onreadystatechange"],"fn-",s)}function o(){var t=this,n=u.context(t);t.readyState>3&&!n.resolved&&(n.resolved=!0,u.emit("xhr-resolved",[],t)),d.inPlace(t,w,"fn-",s)}function i(t){v.push(t),h&&(g=-g,b.data=g)}function a(){for(var t=0;t<v.length;t++)r([],v[t]);v.length&&(v=[])}function s(t,n){return n}function c(t,n){for(var e in t)n[e]=t[e];return n}t(5);var f=t("ee"),u=f.get("xhr"),d=t(18)(u),l=NREUM.o,p=l.XHR,h=l.MO,m="readystatechange",w=["onload","onerror","onabort","onloadstart","onloadend","onprogress","ontimeout"],v=[];n.exports=u;var y=window.XMLHttpRequest=function(t){var n=new p(t);try{u.emit("new-xhr",[n],n),n.addEventListener(m,o,!1)}catch(e){try{u.emit("internal-error",[e])}catch(r){}}return n};if(c(p,y),y.prototype=p.prototype,d.inPlace(y.prototype,["open","send"],"-xhr-",s),u.on("send-xhr-start",function(t,n){r(t,n),i(n)}),u.on("open-xhr-start",r),h){var g=1,b=document.createTextNode(g);new h(a).observe(b,{characterData:!0})}else f.on("fn-end",function(t){t[0]&&t[0].type===m||a()})},{}],10:[function(t,n,e){function r(t){var n=this.params,e=this.metrics;if(!this.ended){this.ended=!0;for(var r=0;r<d;r++)t.removeEventListener(u[r],this.listener,!1);if(!n.aborted){if(e.duration=a.now()-this.startTime,4===t.readyState){n.status=t.status;var i=o(t,this.lastSize);if(i&&(e.rxSize=i),this.sameOrigin){var c=t.getResponseHeader("X-NewRelic-App-Data");c&&(n.cat=c.split(", ").pop())}}else n.status=0;e.cbTime=this.cbTime,f.emit("xhr-done",[t],t),s("xhr",[n,e,this.startTime])}}}function o(t,n){var e=t.responseType;if("json"===e&&null!==n)return n;var r="arraybuffer"===e||"blob"===e||"json"===e?t.response:t.responseText;return h(r)}function i(t,n){var e=c(n),r=t.params;r.host=e.hostname+":"+e.port,r.pathname=e.pathname,t.sameOrigin=e.sameOrigin}var a=t("loader");if(a.xhrWrappable){var s=t("handle"),c=t(11),f=t("ee"),u=["load","error","abort","timeout"],d=u.length,l=t("id"),p=t(14),h=t(13),m=window.XMLHttpRequest;a.features.xhr=!0,t(9),f.on("new-xhr",function(t){var n=this;n.totalCbs=0,n.called=0,n.cbTime=0,n.end=r,n.ended=!1,n.xhrGuids={},n.lastSize=null,p&&(p>34||p<10)||window.opera||t.addEventListener("progress",function(t){n.lastSize=t.loaded},!1)}),f.on("open-xhr-start",function(t){this.params={method:t[0]},i(this,t[1]),this.metrics={}}),f.on("open-xhr-end",function(t,n){"loader_config"in NREUM&&"xpid"in NREUM.loader_config&&this.sameOrigin&&n.setRequestHeader("X-NewRelic-ID",NREUM.loader_config.xpid)}),f.on("send-xhr-start",function(t,n){var e=this.metrics,r=t[0],o=this;if(e&&r){var i=h(r);i&&(e.txSize=i)}this.startTime=a.now(),this.listener=function(t){try{"abort"===t.type&&(o.params.aborted=!0),("load"!==t.type||o.called===o.totalCbs&&(o.onloadCalled||"function"!=typeof n.onload))&&o.end(n)}catch(e){try{f.emit("internal-error",[e])}catch(r){}}};for(var s=0;s<d;s++)n.addEventListener(u[s],this.listener,!1)}),f.on("xhr-cb-time",function(t,n,e){this.cbTime+=t,n?this.onloadCalled=!0:this.called+=1,this.called!==this.totalCbs||!this.onloadCalled&&"function"==typeof e.onload||this.end(e)}),f.on("xhr-load-added",function(t,n){var e=""+l(t)+!!n;this.xhrGuids&&!this.xhrGuids[e]&&(this.xhrGuids[e]=!0,this.totalCbs+=1)}),f.on("xhr-load-removed",function(t,n){var e=""+l(t)+!!n;this.xhrGuids&&this.xhrGuids[e]&&(delete this.xhrGuids[e],this.totalCbs-=1)}),f.on("addEventListener-end",function(t,n){n instanceof m&&"load"===t[0]&&f.emit("xhr-load-added",[t[1],t[2]],n)}),f.on("removeEventListener-end",function(t,n){n instanceof m&&"load"===t[0]&&f.emit("xhr-load-removed",[t[1],t[2]],n)}),f.on("fn-start",function(t,n,e){n instanceof m&&("onload"===e&&(this.onload=!0),("load"===(t[0]&&t[0].type)||this.onload)&&(this.xhrCbStart=a.now()))}),f.on("fn-end",function(t,n){this.xhrCbStart&&f.emit("xhr-cb-time",[a.now()-this.xhrCbStart,this.onload,n],n)})}},{}],11:[function(t,n,e){n.exports=function(t){var n=document.createElement("a"),e=window.location,r={};n.href=t,r.port=n.port;var o=n.href.split("://");!r.port&&o[1]&&(r.port=o[1].split("index.html")[0].split("@").pop().split(":")[1]),r.port&&"0"!==r.port||(r.port="https"===o[0]?"443":"80"),r.hostname=n.hostname||e.hostname,r.pathname=n.pathname,r.protocol=o[0],"/"!==r.pathname.charAt(0)&&(r.pathname="/"+r.pathname);var i=!n.protocol||":"===n.protocol||n.protocol===e.protocol,a=n.hostname===document.domain&&n.port===e.port;return r.sameOrigin=i&&(!n.hostname||a),r}},{}],12:[function(t,n,e){function r(){}function o(t,n,e){return function(){return i(t,[f.now()].concat(s(arguments)),n?null:this,e),n?void 0:this}}var i=t("handle"),a=t(15),s=t(16),c=t("ee").get("tracer"),f=t("loader"),u=NREUM;"undefined"==typeof window.newrelic&&(newrelic=u);var d=["setPageViewName","setCustomAttribute","setErrorHandler","finished","addToTrace","inlineHit","addRelease"],l="api-",p=l+"ixn-";a(d,function(t,n){u[n]=o(l+n,!0,"api")}),u.addPageAction=o(l+"addPageAction",!0),u.setCurrentRouteName=o(l+"routeName",!0),n.exports=newrelic,u.interaction=function(){return(new r).get()};var h=r.prototype={createTracer:function(t,n){var e={},r=this,o="function"==typeof n;return i(p+"tracer",[f.now(),t,e],r),function(){if(c.emit((o?"":"no-")+"fn-start",[f.now(),r,o],e),o)try{return n.apply(this,arguments)}finally{c.emit("fn-end",[f.now()],e)}}}};a("setName,setAttribute,save,ignore,onEnd,getContext,end,get".split(","),function(t,n){h[n]=o(p+n)}),newrelic.noticeError=function(t){"string"==typeof t&&(t=new Error(t)),i("err",[t,f.now()])}},{}],13:[function(t,n,e){n.exports=function(t){if("string"==typeof t&&t.length)return t.length;if("object"==typeof t){if("undefined"!=typeof ArrayBuffer&&t instanceof ArrayBuffer&&t.byteLength)return t.byteLength;if("undefined"!=typeof Blob&&t instanceof Blob&&t.size)return t.size;if(!("undefined"!=typeof FormData&&t instanceof FormData))try{return JSON.stringify(t).length}catch(n){return}}}},{}],14:[function(t,n,e){var r=0,o=navigator.userAgent.match(/Firefox[\/\s](\d+\.\d+)/);o&&(r=+o[1]),n.exports=r},{}],15:[function(t,n,e){function r(t,n){var e=[],r="",i=0;for(r in t)o.call(t,r)&&(e[i]=n(r,t[r]),i+=1);return e}var o=Object.prototype.hasOwnProperty;n.exports=r},{}],16:[function(t,n,e){function r(t,n,e){n||(n=0),"undefined"==typeof e&&(e=t?t.length:0);for(var r=-1,o=e-n||0,i=Array(o<0?0:o);++r<o;)i[r]=t[n+r];return i}n.exports=r},{}],17:[function(t,n,e){n.exports={exists:"undefined"!=typeof window.performance&&window.performance.timing&&"undefined"!=typeof window.performance.timing.navigationStart}},{}],18:[function(t,n,e){function r(t){return!(t&&t instanceof Function&&t.apply&&!t[a])}var o=t("ee"),i=t(16),a="nr@original",s=Object.prototype.hasOwnProperty,c=!1;n.exports=function(t,n){function e(t,n,e,o){function nrWrapper(){var r,a,s,c;try{a=this,r=i(arguments),s="function"==typeof e?e(r,a):e||{}}catch(f){l([f,"",[r,a,o],s])}u(n+"start",[r,a,o],s);try{return c=t.apply(a,r)}catch(d){throw u(n+"err",[r,a,d],s),d}finally{u(n+"end",[r,a,c],s)}}return r(t)?t:(n||(n=""),nrWrapper[a]=t,d(t,nrWrapper),nrWrapper)}function f(t,n,o,i){o||(o="");var a,s,c,f="-"===o.charAt(0);for(c=0;c<n.length;c++)s=n[c],a=t[s],r(a)||(t[s]=e(a,f?s+o:o,i,s))}function u(e,r,o){if(!c||n){var i=c;c=!0;try{t.emit(e,r,o,n)}catch(a){l([a,e,r,o])}c=i}}function d(t,n){if(Object.defineProperty&&Object.keys)try{var e=Object.keys(t);return e.forEach(function(e){Object.defineProperty(n,e,{get:function(){return t[e]},set:function(n){return t[e]=n,n}})}),n}catch(r){l([r])}for(var o in t)s.call(t,o)&&(n[o]=t[o]);return n}function l(n){try{t.emit("internal-error",n)}catch(e){}}return t||(t=o),e.inPlace=f,e.flag=a,e}},{}],ee:[function(t,n,e){function r(){}function o(t){function n(t){return t&&t instanceof r?t:t?c(t,s,i):i()}function e(e,r,o,i){if(!l.aborted||i){t&&t(e,r,o);for(var a=n(o),s=h(e),c=s.length,f=0;f<c;f++)s[f].apply(a,r);var d=u[y[e]];return d&&d.push([g,e,r,a]),a}}function p(t,n){v[t]=h(t).concat(n)}function h(t){return v[t]||[]}function m(t){return d[t]=d[t]||o(e)}function w(t,n){f(t,function(t,e){n=n||"feature",y[e]=n,n in u||(u[n]=[])})}var v={},y={},g={on:p,emit:e,get:m,listeners:h,context:n,buffer:w,abort:a,aborted:!1};return g}function i(){return new r}function a(){(u.api||u.feature)&&(l.aborted=!0,u=l.backlog={})}var s="nr@context",c=t("gos"),f=t(15),u={},d={},l=n.exports=o();l.backlog=u},{}],gos:[function(t,n,e){function r(t,n,e){if(o.call(t,n))return t[n];var r=e();if(Object.defineProperty&&Object.keys)try{return Object.defineProperty(t,n,{value:r,writable:!0,enumerable:!1}),r}catch(i){}return t[n]=r,r}var o=Object.prototype.hasOwnProperty;n.exports=r},{}],handle:[function(t,n,e){function r(t,n,e,r){o.buffer([t],r),o.emit(t,n,e)}var o=t("ee").get("handle");n.exports=r,r.ee=o},{}],id:[function(t,n,e){function r(t){var n=typeof t;return!t||"object"!==n&&"function"!==n?-1:t===window?0:a(t,i,function(){return o++})}var o=1,i="nr@id",a=t("gos");n.exports=r},{}],loader:[function(t,n,e){function r(){if(!x++){var t=b.info=NREUM.info,n=l.getElementsByTagName("script")[0];if(setTimeout(u.abort,3e4),!(t&&t.licenseKey&&t.applicationID&&n))return u.abort();f(y,function(n,e){t[n]||(t[n]=e)}),c("mark",["onload",a()+b.offset],null,"api");var e=l.createElement("script");e.src="https://"+t.agent,n.parentNode.insertBefore(e,n)}}function o(){"complete"===l.readyState&&i()}function i(){c("mark",["domContent",a()+b.offset],null,"api")}function a(){return E.exists&&performance.now?Math.round(performance.now()):(s=Math.max((new Date).getTime(),s))-b.offset}var s=(new Date).getTime(),c=t("handle"),f=t(15),u=t("ee"),d=window,l=d.document,p="addEventListener",h="attachEvent",m=d.XMLHttpRequest,w=m&&m.prototype;NREUM.o={ST:setTimeout,CT:clearTimeout,XHR:m,REQ:d.Request,EV:d.Event,PR:d.Promise,MO:d.MutationObserver};var v=""+location,y={beacon:"bam.nr-data.net",errorBeacon:"bam.nr-data.net",agent:"js-agent.newrelic.com/nr-1026.min.js"},g=m&&w&&w[p]&&!/CriOS/.test(navigator.userAgent),b=n.exports={offset:s,now:a,origin:v,features:{},xhrWrappable:g};t(12),l[p]?(l[p]("DOMContentLoaded",i,!1),d[p]("load",r,!1)):(l[h]("onreadystatechange",o),d[h]("onload",r)),c("mark",["firstbyte",s],null,"api");var x=0,E=t(17)},{}]},{},["loader",2,10,4,3]);</script>
+      <link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700" rel="stylesheet"/>
+      <link href="bundles-css-commonb89b.css?v=Rusf7DYeqIU1WT9ZIQRA0TH3p3covC2jPnWBtF3LInA1" rel="stylesheet"/>
+      <script src="assets/ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+      <script src="assets/ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
+      <script src="assets/netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+      <script src="bundles-js-commonf34e?v=hZLiAHNUOQNS1tdOpTi7pM3v0nIPwm7GY1zRg7QkCMk1"></script>
+      <meta property="og:description" content="SuperAvaliacao.com" />
+      <link rel="canonical" href="index.html">
+      <meta name='DESCRIPTION' content='SuperAvaliacao'/>
+      <link href="bundles-css-home6f65.css?v=7LQVvWzBFn8pVZV8gvpb08y3HWbaxNoTn1zWNE9sEn41" rel="stylesheet"/>
+      <script src="bundles-js-home4bea?v=fJRJIl0BzC4Rmuq2Xy3tbawgFQ95VbM_XN_n8esh7zM1"></script>
+      <input id="popularDomains" type="hidden" value="aol.com,att.net,comcast.net,facebook.com,gmail.com,hotmail.com,live.com,mac.com,me.com,msn.com,sbcglobal.net,verizon.net,yahoo.com"/>
+      <title>
+         SuperAvaliação
+      </title>
+   </head>
+   <body>
+      <div class="displayNone">
+         <input type="hidden" id="adminUser" value=""/>
+      </div>
+      <input type="hidden" id="hdnRecentlyPeddleCars" value=""/>  
+      <input type="hidden" id="hdnSocialNetworkDataResponse" value=""/> 
+      <input type="hidden" id="hdnCarSoldCount" value=""/>  
+      <div class="bodyContainer" id="pageTop">
+         <div class="lightBlueBGStyle">
+            <!-- Header include file -->
+            <script>
+               if($("#peddleAgentId").length)
+               {
+               $(".bodyContainer").prepend($("#peddleAgentId"));
+               }
+            </script>
+            <header class="navbar navbar-default navbar-static-top peddleHeader" role="banner">
+               <div>
+                  <div class="navbar-header pull-left">
+                     <a class="navbar-brand scroll-link headerHomeLink" tabindex="-1" href="index.html" data-id="pageTop">
+                        <div class="peddleLogo"><img src="images/superav.png"></div>
+                     </a>
+                  </div>
+                  <div class="navbar-header pull-right peddleDropdown">
+                     <a id="nav-toggle" class="headerPopoverFix navbar-toggle headerDropdownLink" data-toggle="collapse" data-target="" href="#menu" tabindex="-1">
+                        <div class="headerIconSeparator"></div>
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                     </a>
+                     <!--<a class="headerPopover dropdown-toggle navbar-toggle headerDropdownLink">
+                        <div class="supportIcon" >
+                           <span class="fa fa-comments"></span>
+                        </div>
+                     </a>-->
+                  </div>
+                  <div class="navbar-header">
+                  </div>
+                  <div class="collapse navbar-collapse " id="navbar-collapse">
+                     <ul class="nav navbar-nav navbar-right ">
+                        <li class="hidden-xs">
+                           <a href="#" class="howItWorks scroll-link" tabindex="-1" data-id="comoFunciona">
+                           Como Funciona
+                           </a>
+                        </li>
+                        <li class="hidden-xs">
+                           <a href="#" class="testimonials scroll-link" tabindex="-1" data-id="diferenciais">
+                           Diferenciais
+                           </a>
+                        </li>
+                        <li class="hidden-xs">
+                           <a href="#" class="testimonials scroll-link" tabindex="-1" data-id="plataforma">
+                           Plataforma
+                           </a>
+                        </li>
+                        <!--<li class="hidden-xs">
+                           <a href="#" class="testimonials scroll-link" tabindex="-1" data-id="numeros">
+                           Dados
+                           </a>
+                        </li>-->
+                        <li class="hidden-xs">
+                           <a href="#" class="testimonials scroll-link" tabindex="-1" data-id="duvidas">
+                           Dúvidas
+                           </a>
+                        </li>
+                        <li>
+                           <a class="headerPopover">             
+                           <span>
+                           Contato
+                           </span>
+                           <span class="caret"></span>
+                           </a>            
+                        </li>
+                        <li >
+                           <a id="headerLoginLinkId" href="javascript:com.site.CreateAccountAndLogin.openLoginPopupModal()" tabindex="-1">
+                           Logar-se
+                           </a>
+                        </li>
+                     </ul>
+                  </div>
+                  <div  class="header-breadcrumb">
+                     <div id="contentOfferBreadcrumbContainer" class="container">
+                     </div>
+                  </div>
+               </div>
+            </header>
+            <div id="HeaderSupportMenu" class="hidden">
+               <ul class="popupMenu">
+                  <li class="text-center marginTopBottom10 needHelpTextClass displayNone">
+                     <strong>Podemos Ajudar?</strong>
+                  </li>
+                  <li>
+                     <a href="#" target="_blank">
+                     <span class="supportText">
+                     Facebook
+                     </span>
+                     </a>
+                  </li>
+                  <li>
+                     <div class="phoneLink" rel="nofollow">
+                        <span class="supportText phoneNumberText">
+                        (85) 3306-8237 
+                        </span>
+                     </div>
+                  </li>
+               </ul>
+            </div>
+            <!--<script type="text/javascript">
+               // If phone is available then set below variable
+               
+                  com.site.Config.isPhoneNumberAvailable = true;
+            </script>-->
+            <!--<div id="LoggedInAccountMenu" class="hidden">
+               <ul class="popupMenu">
+                  <li>
+                     <a href="sell-car.html">
+                     <span class="supportText">
+                     Get an offer
+                     </span>
+                     </a>
+                  </li>
+                  <li>
+                     <a href="login.html">
+                     <span class="supportText">
+                     My offers
+                     </span>
+                     </a>
+                  </li>
+                  <li>
+                     <a href="login.html">
+                     <span class="supportText">
+                     My account
+                     </span>
+                     </a>
+                  </li>
+                  <li>
+                     <a href="login.html">
+                     <span class="supportText">
+                     Change password
+                     </span>
+                     </a>
+                  </li>
+               </ul>
+            </div>-->
+            <!-- Menu include file -->
+            <nav id="menu" class="MobileMenu" style="display:none">
+               <div>
+                  <ul class="panelList">
+                     <li role="presentation">
+                        <span class="dropdown-header menuHeader"></span>
+                     </li>
+                     <li role="presentation" class="dropdown-header marginTop25">
+                        <span class="dropdown-header menuHeader">Conta</span>
+                     </li>
+                     <li>
+                        <a id="menuCreateAccountLinkId" href="javascript:com.site.CreateAccountAndLogin.openCreateAccountPopupModal()">CRIAR CONTA</a>
+                     </li>
+                     <li>
+                        <a id="menuLoginLinkId" href="javascript:com.site.CreateAccountAndLogin.openLoginPopupModal()">LOGAR-SE</a>
+                     </li>
+                  </ul>
+               </div>
+            </nav>
+            <!--<script>
+               if($("#peddleAgentId").length)
+               {
+                  $(".peddleHeader").prepend($("#peddleAgentId"));
+                  $(".peddleHeader").prepend($("#agentSearchAutocompleteElement"));
+               }
+            </script>-->
+            <!--<div id="responsive" class="modal custom-modal" tabindex="-1" data-width="630" style="display: none;overflow: hidden;">
+               <div class="modal-header custom-modal-header">
+                  <button type="button" class="close tab-index-flow" tabindex="1" data-dismiss="modal" aria-hidden="true"><span class="fa fa-close"></span></button>
+                  <h4 id="modalTitle" class="modal-title ronniaFont">&nbsp;</h4>
+               </div>
+               <div class="modal-body custom-modal-body-condition carDaigramBody paddingBottom0">
+                  <div class="custom-modal-body-nano">
+                     <div class="overthrow content">
+                        <div class="modalCarDiagramImage modalCarDiagramImageClass marginBottom20">
+                           <div class="tableDisplay tableWidth100Percent tableHeight100Percent">
+                              <div class="tableRowDisplay">
+                                 <a id="driverSideFront" href="#" class="tableCellDisplay modalOptions tdHeight50Percent tdWidth50Percent text-center tableVerticalAlignTop tab-index-flow" tabindex="1">
+                                    <div class="modalOptionTextColorBack">
+                                       DRIVER-SIDE FRONT
+                                    </div>
+                                    <div class="modalOptionHoverIconBackground">
+                                       <div class="modalOptionHoverIcon glyphicon glyphicon-remove"></div>
+                                    </div>
+                                 </a>
+                                 <a id="passengerSideFront" href="#" class="tableCellDisplay modalOptions text-center tableVerticalAlignTop tab-index-flow" tabindex="1">
+                                    <div class="modalOptionTextColorBack">
+                                       PASSENGER-SIDE FRONT
+                                    </div>
+                                    <div class="modalOptionHoverIconBackground">
+                                       <div class="modalOptionHoverIcon glyphicon glyphicon-remove"></div>
+                                    </div>
+                                 </a>
+                              </div>
+                              <div class="tableRowDisplay">
+                                 <a id="driverSideRear" href="#" class="tableCellDisplay modalOptions tdHeight50Percent tdWidth50Percent text-center tableVerticalAlignBottom tab-index-flow" tabindex="1">
+                                    <div class="modalOptionHoverIconBackground">
+                                       <div class="modalOptionHoverIcon glyphicon glyphicon-remove"></div>
+                                    </div>
+                                    <div class="modalOptionTextColorBack">
+                                       DRIVER-SIDE REAR
+                                    </div>
+                                 </a>
+                                 <a id="passengerSideRear" href="#" class="tableCellDisplay modalOptions text-center tableVerticalAlignBottom tab-index-flow" tabindex="1">
+                                    <div class="modalOptionHoverIconBackground">
+                                       <div class="modalOptionHoverIcon glyphicon glyphicon-remove"></div>
+                                    </div>
+                                    <div class="modalOptionTextColorBack">
+                                       PASSENGER-SIDE REAR
+                                    </div>
+                                 </a>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                     <hr class="shadowHr-modal">
+                  </div>
+               </div>
+               <div class="modal-footer custom-modal-footer">
+                  <button id="doneButtonId" type="button" class="btn btn-default custom-btn-default btn-sm btn-block tab-index-flow" tabindex="1">Done</button>
+               </div>
+            </div>-->
+            <!--<div id="BooleanPopUp" class="modal custom-modal" tabindex="-1" data-width="630" style="display: none; ">
+               <div class="modal-header custom-modal-header">
+                  <button type="button" class="close tab-index-flow" tabindex="1" data-dismiss="modal" aria-hidden="true"><span class="fa fa-close"></span></button>
+                  <h4 id="BooleanPopUpTitle" class="modal-title text-center custom-modal-title-text ronniaFont">&nbsp;</h4>
+               </div>
+               <div class="modal-body custom-modal-body-text paddingBottom0">
+                  <div class="custom-modal-body-nano">
+                     <div class="overthrow content">
+                        <div id="BooleanPopUpBody" class="marginBottom20"></div>
+                     </div>
+                     <hr class="shadowHr-modal">
+                  </div>
+               </div>
+               <div class="modal-footer custom-modal-footer">
+                  <div class="btn-group btn-group-justified">
+                     <a id="BooleanPopUpLeftButton" href="#" class="btn btn-default custom-btn-default btn-sm custom-btn-breakLine tab-index-flow" tabindex="1"></a>
+                     <a id="BooleanPopUpRightButton" href="#" class="btn btn-default custom-btn-default btn-sm custom-btn-split custom-btn-breakLine tab-index-flow" tabindex="1"></a>
+                  </div>
+               </div>
+            </div>-->
+            <!--<div id="infoPopUp" class="modal custom-modal" tabindex="-1" data-width="630" style="display: none; ">
+               <div class="modal-header custom-modal-header">
+                  <button type="button" class="close tab-index-flow" tabindex="1" data-dismiss="modal" aria-hidden="true"><span class="fa fa-close"></span></button>
+                  <h4 id="infoPopUpTitle" class="modal-title text-center custom-modal-title-text ronniaFont">&nbsp;</h4>
+               </div>
+               <div class="modal-body custom-modal-body-text paddingBottom0">
+                  <div class="custom-modal-body-nano">
+                     <div class="overthrow content">
+                        <div id="infoPopUpBody" class="marginBottom20"></div>
+                     </div>
+                     <hr class="shadowHr-modal">
+                  </div>
+               </div>
+               <div class="modal-footer custom-modal-footer">
+                  <div class="btn-group btn-group-justified">
+                     <a id="infoPopUpButton" href="#" class="btn btn-default custom-btn-default btn-sm btn-block tab-index-flow" tabindex="1"></a>
+                  </div>
+               </div>
+            </div>-->
+            <!--<div id="inviteFriend" class="modal custom-modal" tabindex="-1" data-width="630" style="display: none; ">
+               <div class="modal-header custom-modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span class="fa fa-close"></span></button>
+                  <h4 class="modal-title text-center custom-modal-title-text ronniaFont">Send a message</h4>
+               </div>
+               <div class="modal-body custom-modal-body-text paddingBottom0">
+                  <div class="custom-modal-body-nano">
+                     <div class="overthrow content">
+                        <input class="form-control data_field custom-slide-default-form-control" name="data_field" value="" placeholder="Friends email address" maxlength="50" />
+                        <br/>      
+                        <div id="inviteFriendMessageTextContainer" class="marginBottom20">
+                           <textarea id="inviteFriendMessage" class="form-control textArea custom-slide-default-form-control-textArea" rows="3" placeholder="Message"></textarea>
+                           <span class="charactersRemainingText"></span>
+                        </div>
+                     </div>
+                     <hr class="shadowHr-modal">
+                  </div>
+               </div>
+               <div class="modal-footer custom-modal-footer">
+                  <button id="inviteFriendDoneButtonId" type="button" class="btn btn-default custom-btn-default btn-sm btn-block tab-index-flow" tabindex="1">Send</button>
+               </div>
+            </div>-->
+            <!--<div id="rateOffer" class="modal custom-modal" tabindex="-1" data-width="630" data-toggle="modal" style="display: none; ">
+               <div class="modal-header custom-modal-header">
+                  <button type="button" class="close  tab-index-flow" tabindex="1" data-dismiss="modal" aria-hidden="true"><span class="fa fa-close"></span></button>
+                  <h4 class="modal-title text-center custom-modal-title-text ronniaFont">How did we do?</h4>
+               </div>
+               <div class="modal-body custom-modal-body-text paddingBottom0">
+                  <div class="custom-modal-body-nano">
+                     <div class="overthrow content">
+                        <div class="">Rate your experience</div>
+                        <div id="peddleRate" class="starRating carrierScore">
+                           <img src="Images/AcceptOffer/StarOff.png" alt="1" />
+                           <img src="Images/AcceptOffer/StarOff.png" alt="2" />
+                           <img src="Images/AcceptOffer/StarOff.png" alt="3" />
+                           <img src="Images/AcceptOffer/StarOff.png" alt="4" />
+                           <img src="Images/AcceptOffer/StarOff.png" alt="5" />
+                           <input type="hidden" name="score"/>
+                        </div>
+                        <div class="text-left paddingBottom10">Add a personal comment</div>
+                        <div id="rateOfferMessageTextContainer" class="marginBottom20">
+                           <textarea id="rateOfferMessage" class="form-control textArea custom-slide-default-form-control-textArea" rows="3" placeholder="Message"></textarea>
+                           <span class="charactersRemainingText"></span>
+                        </div>
+                     </div>
+                     <hr class="shadowHr-modal">
+                  </div>
+               </div>
+               <div class="modal-footer custom-modal-footer">
+                  <div id="errorMessageReasonPostCompleteId" class="alert alert-danger custom-alert fade in errorMessageAlert displayNone">
+                     <table class="tableWidth100Percent">
+                        <tr>
+                           <td class="errorMessageText text-left">Select a rating.
+                           </td>
+                           <td>
+                              <span class="fa fa-close-circled custom-alert-close declineOfferErrorMsgCancel customSlideError"></span>
+                           </td>
+                        </tr>
+                     </table>
+                  </div>
+                  <button id="rateOfferSubmitButton" type="button" class="btn btn-default custom-btn-default btn-sm tab-index-flow" tabindex="1">Submit</button>
+               </div>
+            </div>-->
+            <!--<div id="declineOffer" class="modal custom-modal" tabindex="-1" data-width="630" style="display: none; ">
+               <div class="modal-header custom-modal-header">
+                  <button type="button" class="close tab-index-flow" tabindex="1" data-dismiss="modal" aria-hidden="true"><span class="fa fa-close"></span></button>
+                  <h4 id="declineModalTitleTextId" class="modal-title text-center custom-modal-title-text ronniaFont">Are you sure you want to decline your offer?</h4>
+               </div>
+               <div class="modal-body custom-modal-body-text paddingBottom0">
+                  <div class="custom-modal-body-nano">
+                     <div class="overthrow content">
+                        <div class="">Help us out and tell us why:</div>
+                        <br />
+                        <div class="">Rate your experience</div>
+                        <div id="declineRating" class="starRating carrierScore">
+                           <img src="Images/AcceptOffer/StarOff.png" alt="1" />
+                           <img src="Images/AcceptOffer/StarOff.png" alt="2" />
+                           <img src="Images/AcceptOffer/StarOff.png" alt="3" />
+                           <img src="Images/AcceptOffer/StarOff.png" alt="4" />
+                           <img src="Images/AcceptOffer/StarOff.png" alt="5" />
+                           <input type="hidden" name="score"/>
+                        </div>
+                        <div class="text-left paddingBottom10">Add a personal comment</div>
+                        <div id="feedBackOnDeclineTextContainer" class="marginBottom20">
+                           <textarea id="feedBackOnDecline" class="form-control textArea custom-slide-default-form-control-textArea" rows="3" placeholder="Message"></textarea>
+                        </div>
+                     </div>
+                     <hr class="shadowHr-modal">
+                  </div>
+               </div>
+               <div class="modal-footer custom-modal-footer">
+                  <div id="errorMessageReasonId" class="alert alert-danger custom-alert fade in errorMessageAlert displayNone">
+                     <table class="tableWidth100Percent">
+                        <tr>
+                           <td class="errorMessageText text-left">Add a comment in order to decline your offer.
+                           </td>
+                           <td>
+                              <span class="fa fa-close-circled custom-alert-close declineOfferErrorMsgCancel customSlideError"></span>
+                           </td>
+                        </tr>
+                     </table>
+                  </div>
+                  <button id="declineOfferModalButton" type="button" class="btn btn-default custom-btn-default btn-sm btn-block tab-index-flow" tabindex="1">Decline</button>
+               </div>
+            </div>-->
+            <div id="createAccountLoginModal" class="modal custom-modal createAccountLoginModalClass" tabindex="-1" data-width="630" style="display: none; ">
+               <div id="accountSectionId" class="accountSection">
+                  <div class="modal-header custom-modal-header">
+                     <button type="button" class="close tab-index-flow" tabindex="1" data-dismiss="modal" aria-hidden="true"><span class="fa fa-close"></span></button>
+                     <h4 class="modal-title text-center custom-modal-title-text ronniaFont">Vamos Começar</h4>
+                  </div>
+                  <div class="modal-body paddingBottom0">
+                     <div class="custom-modal-body-nano">
+                        <div class="">
+                           <div class=" marginTop15 custom-slide-default-form-group-form-control">  
+                              <span class="ui-input">
+                              <input  class="form-control tab-index-flow" tabindex="1" name="createAccountEmailInput" value="" placeholder="Email" maxlength="80" />
+                              <span class="fa fa-close-circled ui-icon-input"></span>
+                              <span class="icon-ok-circled ui-icon-input ui-icon-input-Success"></span>
+                              </span>
+                           </div>
+                           <div class="text-center marginBottom20">
+                              <div class="agreeTermsText">
+                                 <a id="loginLinkIO" href="#" class="tab-index-flow" tabindex="1"> Já Possui uma Conta?</a>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="text-center modalLoadingIconContainer displayNone">
+                        <span class="icon-spin5 spinner animate-spin ui-icon-input slideLoadingIcon"></span>
+                     </div>
+                  </div>
+                  <div class="modal-footer custom-modal-footer">
+                     <div id="createAccountErrorMsg" class="alert alert-danger custom-alert fade in errorMessageAlert displayNone">
+                        <table class="tableWidth100Percent">
+                           <tr>
+                              <td class="errorMessageText text-left">
+                              </td>
+                              <td>
+                                 <span class="fa fa-close-circled custom-alert-close createAccountLoginErrorMsgCancel customSlideError"></span>
+                              </td>
+                           </tr>
+                        </table>
+                     </div>
+                     <button id="createAccountModalButtonId" type="button" class="btn btn-default custom-btn-default btn-sm btn-block tab-index-flow" tabindex="1">
+                     Continuar
+                     </button>
+                  </div>
+               </div>
+               <div id="loginSectionId" class="displayNone">
+                  <div class="modal-header custom-modal-header">
+                     <button type="button" class="close tab-index-flow" tabindex="1" data-dismiss="modal" aria-hidden="true"><span class="fa fa-close"></span></button>
+                     <h4 class="modal-title text-center custom-modal-title-text ronniaFont">Bem Vindo. Vamos Começar!</h4>
+                  </div>
+                  <div class="modal-body paddingBottom0">
+                     <div class="custom-modal-body-nano">
+                        <div class="overthrow content">
+                           <div class="form-group  marginTop15 custom-slide-default-form-group-form-control">
+                              <span id="loginEmailInputContainer" class="ui-input">
+                              <input id="loginEmailInput" class="form-control data_field applyAutoSuggestEmail tab-index-flow" tabindex="1" name="loginEmailInput" value="" placeholder="Email" maxlength="80" />
+                              <!--<span class="fa fa-close-circled ui-icon-input"></span>
+                              <span class="icon-ok-circled ui-icon-input ui-icon-input-Success"></span>
+                              </span>-->
+                              <span id="loginPasswordInputContainer" class="ui-input">
+                              <input id="loginPasswordInput" class="form-control data_field tab-index-flow" tabindex="1" name="loginPasswordInputContainer" type="password" value="" placeholder="Senha" maxlength="50" />
+                              <!--<span class="fa fa-close-circled ui-icon-input"></span>
+                              <span class="icon-ok-circled ui-icon-input ui-icon-input-Success"></span>
+                              </span>-->
+                           </div>
+                           <div id="StayLogIn" class="form-group">
+                              <label class="textStayLogIn cursorPointer">
+                              <input type="checkbox" class="tab-index-flow" tabindex="1" value=""/>
+                              &nbsp;&nbsp;Permanecer Logado
+                              </label>
+                              <a id="forgetPasswordLinkIO" class="textStayLogIn pull-right forgetPasswordLinkText tab-index-flow" tabindex="1" href="#">Esqueceu a Senha?</a>
+                           </div>
+                           <div class="text-center marginBottom20">
+                              <div class="agreeTermsText"> <a id="createAccountLinkIO" href="#" class="tab-index-flow" tabindex="1">Não tem uma conta?</a></div>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="text-center modalLoadingIconContainer displayNone">
+                        <span class="icon-spin5 spinner animate-spin ui-icon-input slideLoadingIcon"></span>
+                     </div>
+                  </div>
+                  <div class="modal-footer custom-modal-footer">
+                     <div id="loginErrorMsg" class="alert alert-danger custom-alert fade in errorMessageAlert displayNone">
+                        <table class="tableWidth100Percent">
+                           <tr>
+                              <td class="errorMessageText text-left">
+                              </td>
+                              <td>
+                                 <span class="fa fa-close-circled custom-alert-close createAccountLoginErrorMsgCancel customSlideError"></span>
+                              </td>
+                           </tr>
+                        </table>
+                     </div>
+                     <button id="loginModalButtonId" type="button" class="btn btn-default custom-btn-default btn-sm btn-block tab-index-flow" tabindex="1">
+                     Entrar
+                     </button>
+                  </div>
+               </div>
+               <div id="forgotPasswordSectionId" class="displayNone">
+                  <div class="modal-header custom-modal-header">
+                     <button type="button" class="close tab-index-flow" tabindex="1" data-dismiss="modal" aria-hidden="true"><span class="fa fa-close"></span></button>
+                     <h4 class="modal-title text-center custom-modal-title-text ronniaFont">
+                        Esqueceu a Senha
+                     </h4>
+                  </div>
+                  <div class="modal-body paddingBottom0">
+                     <div class="custom-modal-body-nano">
+                        <div class="overthrow content">
+                           <div class="noSweetSubText marginTop10 marginBottom20">Digite seu email e nós o ajudaremos.</div>
+                           <div class="form-group">
+                              <span class="ui-input">
+                              <input id="fpEmailInput" class="form-control data_field custom-slide-default-form-control applyAutoSuggestEmail tab-index-flow" tabindex="1"  type="text" name="data_field" placeholder="Email" maxlength="80" />
+                             <!-- <span class="fa fa-close-circled ui-icon-input"></span>
+                              <span class="icon-ok-circled ui-icon-input ui-icon-input-Success"></span>
+                              </span>-->
+                              <div class="linkStyleContainer text-center">
+                                 <a class="textStayLogIn forgetPasswordLinkText tab-index-flow" tabindex="1" id="returnToLoginLinkIO" href="#">
+                                 Retornar para tela de Login
+                                 </a>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="text-center modalLoadingIconContainer displayNone">
+                        <span class="icon-spin5 spinner animate-spin ui-icon-input slideLoadingIcon"></span>
+                     </div>
+                  </div>
+                  <div class="modal-footer custom-modal-footer">
+                     <div id="forgotPasswordErrorMsg" class="alert alert-danger custom-alert fade in errorMessageAlert displayNone">
+                        <table class="tableWidth100Percent">
+                           <tr>
+                              <td class="errorMessageText text-left">
+                              </td>
+                              <td>
+                                 <span class="fa fa-close-circled custom-alert-close createAccountLoginErrorMsgCancel customSlideError"></span>
+                              </td>
+                           </tr>
+                        </table>
+                     </div>
+                     <button id="resetBtn" type="button" class="btn btn-default custom-btn-default btn-sm btn-block tab-index-flow" tabindex="1">
+                     Enviar
+                     </button>      
+                  </div>
+               </div>
+            </div>
+            <!--<div id="SMSOffer" class="modal custom-modal" tabindex="-1" data-width="630" style="display: none; ">
+               <div class="modal-header custom-modal-header">
+                  <button type="button" class="close tab-index-flow" tabindex="1" data-dismiss="modal" aria-hidden="true"><span class="fa fa-close"></span></button>
+                  <h4 class="modal-title text-center custom-modal-title-text ronniaFont">Send offer SMS</h4>
+               </div>
+               <div class="modal-body paddingBottom0">
+                  <div class="custom-modal-body-nano">
+                     <div class="overthrow content">
+                        <div class="form-group marginBottom20">
+                           <span class="ui-input">
+                           <input id="SMSNumber" class="form-control data_field custom-slide-default-form-control" name="data_field" value="" placeholder="Phone number" maxlength="14" pattern="\d*" />        
+                           <span class="fa fa-close-circled ui-icon-input"></span>
+                           <span class="icon-ok-circled ui-icon-input ui-icon-input-Success"></span>
+                           </span>
+                        </div>
+                     </div>
+                     <hr class="shadowHr-modal">
+                  </div>
+               </div>
+               <div class="modal-footer custom-modal-footer">
+                  <div id="sendSMSOfferErrorMsg" class="alert alert-danger custom-alert fade in errorMessageAlert displayNone">
+                     <table class="tableWidth100Percent">
+                        <tr>
+                           <td class="errorMessageText text-left">
+                           </td>
+                           <td>
+                              <span class="fa fa-close-circled custom-alert-close sendSMSOfferErrorMsgCancel customSlideError"></span>
+                           </td>
+                        </tr>
+                     </table>
+                  </div>
+                  <button id="sendSMSOfferButtonId" type="button" class="btn btn-default custom-btn-default btn-sm btn-block tab-index-flow" tabindex="1">Send</button>
+               </div>
+            </div>-->
+            <!--<div id="askingPriceModal" class="modal custom-modal" tabindex="-1" data-width="630" style="display: none; ">
+               <div class="modal-header custom-modal-header">
+                  <button type="button" class="close tab-index-flow" tabindex="1" data-dismiss="modal" aria-hidden="true"><span class="fa fa-close"></span></button>
+                  <h4 class="modal-title text-center custom-modal-title-text ronniaFont">Asking Price</h4>
+               </div>
+               <div class="modal-body paddingBottom0">
+                  <div class="custom-modal-body-nano">
+                     <div class="overthrow content">
+                        <div class="form-group marginBottom20">
+                           <span class="ui-input">
+                           <input id="askingPriceInput" class="form-control data_field custom-slide-default-form-control" name="data_field" value="" placeholder="Asking price" maxlength="6" pattern="\d*" />        
+                           <span class="fa fa-close-circled ui-icon-input"></span>
+                           <span class="icon-ok-circled ui-icon-input ui-icon-input-Success"></span>
+                           </span>
+                        </div>
+                     </div>
+                     <hr class="shadowHr-modal">
+                  </div>
+               </div>
+               <div class="modal-footer custom-modal-footer">
+                  <div id="askingPriceErrorMsg" class="alert alert-danger custom-alert fade in errorMessageAlert displayNone">
+                     <table class="tableWidth100Percent">
+                        <tr>
+                           <td class="errorMessageText text-left">
+                           </td>
+                           <td>
+                              <span class="fa fa-close-circled custom-alert-close askingPriceErrorMsgCancel customSlideError"></span>
+                           </td>
+                        </tr>
+                     </table>
+                  </div>
+                  <button id="askingPriceSaveButtonId" type="button" class="btn btn-default custom-btn-default btn-sm btn-block tab-index-flow" tabindex="1">Save</button>
+               </div>
+            </div>-->
+            <!--<div id="offerAdjustModal" class="modal custom-modal" tabindex="-1" data-width="630" style="display: none; ">
+               <div class="modal-header custom-modal-header">
+                  <button type="button" class="close tab-index-flow" tabindex="1" data-dismiss="modal" aria-hidden="true"><span class="fa fa-close"></span></button>
+                  <h4 class="modal-title text-center custom-modal-title-text ronniaFont">Adjust Offer</h4>
+               </div>
+               <div class="modal-body paddingBottom0">
+                  <div class="custom-modal-body-nano">
+                     <div class="overthrow content">
+                        <div class="form-group marginBottom20">
+                           <span class="ui-input">
+                           <input id="offerAdjustInput" class="form-control data_field custom-slide-default-form-control" name="data_field" value="" placeholder="Offer amount" maxlength="7" pattern="\d*" />        
+                           <span class="fa fa-close-circled ui-icon-input"></span>
+                           <span class="icon-ok-circled ui-icon-input ui-icon-input-Success"></span>
+                           </span>
+                        </div>
+                     </div>
+                     <hr class="shadowHr-modal">
+                  </div>
+               </div>
+               <div class="modal-footer custom-modal-footer">
+                  <div id="offerAdjustErrorMsg" class="alert alert-danger custom-alert fade in errorMessageAlert displayNone">
+                     <table class="tableWidth100Percent">
+                        <tr>
+                           <td class="errorMessageText text-left">
+                           </td>
+                           <td>
+                              <span class="fa fa-close-circled custom-alert-close offerAdjustErrorMsgCancel customSlideError"></span>
+                           </td>
+                        </tr>
+                     </table>
+                  </div>
+                  <button id="offerAdjustSaveButtonId" type="button" class="btn btn-default custom-btn-default btn-sm btn-block tab-index-flow" tabindex="1">Save</button>
+               </div>
+            </div>-->
+            <!--<div id="transportTypeModal" class="modal custom-modal" tabindex="-1" data-width="630" style="display: none; ">
+               <div class="modal-header custom-modal-header">
+                  <button type="button" class="close tab-index-flow" tabindex="1" data-dismiss="modal" aria-hidden="true"><span class="fa fa-close"></span></button>
+                  <h4 class="modal-title text-center custom-modal-title-text ronniaFont">Vehicle Delivery</h4>
+               </div>
+               <div class="modal-body paddingBottom0">
+                  <div class="custom-modal-body-nano">
+                     <div class="overthrow content">
+                        <div class="form-group marginBottom20">
+                           <select name="transportTypeSelectId" id="transportTypeSelectId" class="transportTypeSelectpicker show-tick">
+                              <option value="1">Carrier delivery</option>
+                              <option value="2">Seller delivery</option>
+                           </select>
+                        </div>
+                     </div>
+                     <hr class="shadowHr-modal">
+                  </div>
+               </div>
+               <div class="modal-footer custom-modal-footer">
+                  <div id="transportTypeErrorMsg" class="alert alert-danger custom-alert fade in errorMessageAlert displayNone">
+                     <table class="tableWidth100Percent">
+                        <tr>
+                           <td class="errorMessageText text-left">
+                           </td>
+                           <td>
+                              <span class="fa fa-close-circled custom-alert-close transportTypeErrorMsgCancel customSlideError"></span>
+                           </td>
+                        </tr>
+                     </table>
+                  </div>
+                  <button id="transportTypeSaveButtonId" type="button" class="btn btn-default custom-btn-default btn-sm btn-block tab-index-flow" tabindex="1">Save</button>
+               </div>
+            </div>-->
+            <!--<div id="ouiBounceModal" class="modal custom-modal" tabindex="-1" data-width="630" style="display: none; ">
+               <div class="modal-header custom-modal-header">
+                  <button type="button" class="close tab-index-flow" tabindex="1" data-dismiss="modal" aria-hidden="true"><span class="fa fa-close"></span></button>
+                  <h4 class="modal-title text-center custom-modal-title-text ronniaFont">Your offer may increase!<br /> Stay in touch for updates.</h4>
+               </div>
+               <div class="modal-body paddingBottom0">
+                  <div class="custom-modal-body-nano">
+                     <div class="overthrow content">
+                        <div class="form-group marginBottom20">
+                           <span class="ui-input">
+                           <input id="ouiBounceEmailInput" class="form-control data_field custom-slide-default-form-control applyAutoSuggestEmail" name="data_field" value="" placeholder="Email" maxlength="80" />        
+                           <span class="fa fa-close-circled ui-icon-input"></span>
+                           <span class="icon-ok-circled ui-icon-input ui-icon-input-Success"></span>
+                           </span>
+                        </div>
+                     </div>
+                     <hr class="shadowHr-modal">
+                  </div>
+               </div>
+               <div class="modal-footer custom-modal-footer">
+                  <div id="ouiBounceEmailErrorMsg" class="alert alert-danger custom-alert fade in errorMessageAlert displayNone">
+                     <table class="tableWidth100Percent">
+                        <tr>
+                           <td class="errorMessageText text-left">Enter an email in order to submit.
+                           </td>
+                           <td>
+                              <span class="fa fa-close-circled custom-alert-close ouiBounceErrorMsgCancel customSlideError"></span>
+                           </td>
+                        </tr>
+                     </table>
+                  </div>
+                  <button id="ouiBounceSubmitButtonId" type="button" class="btn btn-default custom-btn-default btn-sm btn-block tab-index-flow" tabindex="1">Submit</button>
+               </div>
+            </div>-->
+            <!--<div id="preInstantPick" class="modal custom-modal" tabindex="-1" data-width="630" style="display: none; ">
+               <div class="modal-header custom-modal-header">
+                  <button type="button" class="close tab-index-flow" tabindex="1" data-dismiss="modal" aria-hidden="true"><span class="fa fa-close"></span></button>
+                  <h4 class="modal-title text-center custom-modal-title-text ronniaFont">
+                     We'll pick it up and pay <br>
+                     <div id="preInstantPickOffer" class="preInstantOfferAmt">$0</div>
+                  </h4>
+               </div>
+               <div class="modal-body custom-modal-body-text paddingBottom0">
+                  <div class="custom-modal-body-nano">
+                     <div class="overthrow content">
+                        <div class="col-md-12">
+                           <div class="graphic-container text-center">
+                              <table class="preInstantGraphic preInstantGraphicModal">
+                                 <tr>
+                                    <td>
+                                       <img src="Images/InstantOffer/pickup.png" alt="">
+                                    </td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </div>
+                        <br><br>
+                        <div class="col-md-12">
+                           <div class="ronniaFont preInstantInfoLine modalLine text-center">
+                              We come to you
+                           </div>
+                           <div class="ronniaFont preInstantInfoLine modalLine text-center">
+                              Instant sale
+                           </div>
+                        </div>
+                     </div>
+                     <hr class="shadowHr-modal">
+                  </div>
+               </div>
+               <div class="modal-footer custom-modal-footer">
+                  <button id="preInstantPickModalButton" type="button" class="btn btn-success custom-btn-default btn-sm btn-block tab-index-flow preinstantModalBtn" tabindex="1">Get paid&nbsp;<span class="icon-right-open-1 arrowIconButtonRight"></span></button>
+               </div>
+            </div>-->
+            <!--<div id="preInstantDrop" class="modal custom-modal" tabindex="-1" data-width="630" style="display: none; ">
+               <div class="modal-header custom-modal-header">
+                  <button type="button" class="close tab-index-flow" tabindex="1" data-dismiss="modal" aria-hidden="true"><span class="fa fa-close"></span></button>
+                  <h4 class="modal-title text-center custom-modal-title-text ronniaFont">
+                     Drive it in and we'll pay <br>
+                     <div id="preInstantDropOffer" class="preInstantOfferAmt">$0</div>
+                  </h4>
+               </div>
+               <div class="modal-body custom-modal-body-text paddingBottom0">
+                  <div class="custom-modal-body-nano">
+                     <div class="overthrow content">
+                        <div class="col-md-12">
+                           <div class="graphic-container text-center">
+                              <table class="preInstantGraphic preInstantGraphicModal">
+                                 <tr>
+                                    <td>
+                                       <img  src="Images/InstantOffer/dropoff.png" alt="">
+                                    </td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </div>
+                        <br><br>
+                        <div class="col-md-12">
+                           <div class="ronniaFont preInstantInfoLine modalLine text-center">
+                              You come to us <span class="preInstantOfferDistance">5 miles</span>
+                           </div>
+                           <div class="ronniaFont preInstantInfoLine modalLine text-center">
+                              Instant sale
+                           </div>
+                        </div>
+                     </div>
+                     <hr class="shadowHr-modal">
+                  </div>
+               </div>
+               <div class="modal-footer custom-modal-footer">
+                  <button id="preInstantDropModalButton" type="button" class="btn btn-success custom-btn-default btn-sm btn-block tab-index-flow preinstantModalBtn" tabindex="1">Get paid&nbsp;<span class="icon-right-open-1 arrowIconButtonRight"></span></button>
+               </div>
+            </div>-->
+            <!--<div id="preInstantListing" class="modal custom-modal" tabindex="-1" data-width="630" style="display: none; ">
+               <div class="modal-header custom-modal-header">
+                  <button type="button" class="close tab-index-flow" tabindex="1" data-dismiss="modal" aria-hidden="true"><span class="fa fa-close"></span></button>
+                  <h4 class="modal-title text-center custom-modal-title-text ronniaFont">
+                     List for sale up to <br>
+                     <div id="preInstantListingOffer" class="preInstantOfferAmt">$40</div>
+                  </h4>
+               </div>
+               <div class="modal-body custom-modal-body-text paddingBottom0">
+                  <div class="custom-modal-body-nano">
+                     <div class="overthrow content">
+                        <div class="col-md-12">
+                           <div class="graphic-container text-center">
+                              <table class="preInstantGraphic preInstantGraphicModal">
+                                 <tr>
+                                    <td>
+                                       <img src="Images/InstantOffer/listing.png" alt="">
+                                    </td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </div>
+                        <br><br>
+                        <div class="col-md-12">
+                           <div class="ronniaFont preInstantInfoLine modalLine text-center">
+                              You ask your price
+                           </div>
+                           <div class="ronniaFont preInstantInfoLine modalLine text-center">
+                              Sale time varies
+                           </div>
+                        </div>
+                     </div>
+                     <hr class="shadowHr-modal">
+                  </div>
+               </div>
+               <div class="modal-footer custom-modal-footer">
+                  <button id="preInstantListingModalButton" type="button" class="btn btn-success custom-btn-default btn-sm btn-block tab-index-flow preinstantModalBtn" tabindex="1">Get listed&nbsp;<span class="icon-right-open-1 arrowIconButtonRight"></span></button>
+               </div>
+            </div>-->
+            <!--<div id="changeListingExpirationDateModal" class="modal custom-modal" tabindex="-1" data-width="630" style="display: none; ">
+               <div class="modal-header custom-modal-header">
+                  <button type="button" class="close tab-index-flow" tabindex="1" data-dismiss="modal" aria-hidden="true">
+                  <span class="fa fa-close"></span>
+                  </button>
+                  <h4 class="modal-title text-center custom-modal-title-text ronniaFont">
+                     Listing expiration date
+                  </h4>
+               </div>
+               <div class="modal-body paddingBottom0">
+                  <div class="custom-modal-body-nano">
+                     <div class="form-group form-group-sm align-to-md readOnlyDate has-feedback">
+                        <input id="changeDate" type="text" readonly="true" placeholder="mm/dd/yyyy" class="form-control" />
+                        <span aria-hidden="true" class="icon-calendar form-control-feedback"></span>
+                     </div>
+                     <br/>
+                     <br/>
+                  </div>
+               </div>
+               <div class="modal-footer custom-modal-footer">
+                  <div id="UpdateListingDateErrorMsg" class="alert alert-danger custom-alert fade in errorMessageAlert displayNone">
+                     <table class="tableWidth100Percent">
+                        <tr>
+                           <td class="errorMessageText text-left">
+                           </td>
+                           <td>
+                              <span class="fa fa-close-circled custom-alert-close createAccountLoginErrorMsgCancel customSlideError"></span>
+                           </td>
+                        </tr>
+                     </table>
+                  </div>
+                  <button id="changeListingExpirationDateSubmitButtonId" type="button" class="btn btn-default custom-btn-default btn-sm btn-block tab-index-flow" tabindex="1">
+                  Save
+                  </button>
+               </div>
+            </div>-->
+            <!--<div id="changeAskingPriceModal" class="modal custom-modal" tabindex="-1" data-width="630" style="display: none; ">
+               <div class="modal-header custom-modal-header">
+                  <button type="button" class="close tab-index-flow" tabindex="1" data-dismiss="modal" aria-hidden="true">
+                  <span class="fa fa-close"></span>
+                  </button>
+                  <h4 class="modal-title text-center custom-modal-title-text ronniaFont">
+                     List for
+                  </h4>
+               </div>
+               <div class="modal-body paddingBottom0">
+                  <div class="custom-modal-body-nano">
+                     <div class="overthrow content">
+                        <div class="form-group marginBottom20">
+                           <span class="ui-input">
+                           <input id="changeAskingPrice" class="form-control data_field custom-slide-default-form-control" name="data_field" value="" placeholder="Asking price" maxlength="7" pattern="\d*" />        
+                           <span class="fa fa-close-circled ui-icon-input"></span>
+                           <span class="icon-ok-circled ui-icon-input ui-icon-input-Success"></span>
+                           </span>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <div class="modal-footer custom-modal-footer">
+                  <div id="UpdateAskingPriceErrorMsg" class="alert alert-danger custom-alert fade in errorMessageAlert displayNone">
+                     <table class="tableWidth100Percent">
+                        <tr>
+                           <td class="errorMessageText text-left">
+                           </td>
+                           <td>
+                              <span class="fa fa-close-circled custom-alert-close createAccountLoginErrorMsgCancel customSlideError"></span>
+                           </td>
+                        </tr>
+                     </table>
+                  </div>
+                  <button id="changeAskingPriceSubmitButtonId" type="button" class="btn btn-default custom-btn-default btn-sm btn-block tab-index-flow" tabindex="1">
+                  Save
+                  </button>
+               </div>
+            </div>-->
+            <div id="peddleVideoModal" class="peddleVideoModal">
+               <div class="container">
+                  <div id="videoPopupClose" class="videoPopupClose">
+                     <span class="fa fa-close-1 custom-alert-close videoModalCloseIcon"></span>
+                  </div>
+                  <video id="peddleVideo" class="video-js vjs-default-skin" preload="metadata" nativecontrolsfortouch="true"
+                     x-webkit-airplay="allow" data-setup='{"example_option":true}' style="margin: 0 auto;">
+                     <source src="Video/peddle.mp4" type='video/mp4' />
+                  </video>
+               </div>
+            </div>
+            <div class="container padding0 paddingTop80">
+               <div class="headerTagLine">
+                  <h5 class="text-center margin0"></h5>
+                  <h1 class="text-center peddleYourCarText ronniaFont">
+                     <img style="max-width: 70%;" src="images/logo-banner.png">
+                  </h1>
+                  <h5 class="text-center margin0">
+                     Venda de veículo como deveria ser: 
+                  </h5>
+                  <h3 class="text-center margin0">
+                     Rápido, Fácil e Rentável. 
+                  </h3>
+               </div>
+            </div>
+            <div class="cloudContainer">
+               <div id="cloudLeft" class="cloud hidden-xs cloudTopTransition">
+               </div>
+               <div id="miniCloud" class="miniCloud cloudMiniTransition cloudBottom hidden-xs">
+               </div>
+               <div id="cloudRight" class="cloud cloudBottomTransition cloudBottom hidden-xs">
+               </div>
+            </div>
+            <div class="city">
+            </div>
+            <div class="roadContainer">
+               <div class="road">
+                  <div class="bicycle">
+                  </div>
+                  <div class="toeTruckOnRoad">
+                  </div>
+                  <div class="limoOnRoad">
+                  </div>
+                  <div class="blueCarOnRoad">
+                  </div>
+                  <div class="suvCarOnRoad">
+                  </div>
+               </div>
+            </div>
+         </div>
+         <hr  class="pickUpSpotDivider"/>
+         <div id="comoFunciona" class="container">
+            <h2 class="ronniaFont howItWorksTitleText">
+               Como Funciona
+            </h2>
+            <div class="row padding0">
+               <div class="col-xs-10 col-sm-5 col-md-5 hidden-xs">
+                  <div class="timelineImageHeight ">
+                     <img id="browserIphone" src="images/t.png" style="margin-left: 35%; margin-top: 10%;" data-original="images/home/listing.png" class="img-responsive illustration illustrationLeft"
+                        alt="Iphone image">
+                  </div>
+               </div>
+               <div class="col-xs-2 col-sm-2 col-md-2 hidden-xs">
+                  <div class="timeLineContainer timeLineContainerBorderUp">
+                     <div class="timelineImageHeight">
+                        <div class="blackRoundCircle">
+                           <div class="arrowImage">
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <div class="col-xs-10 col-sm-5 col-md-5 smallScreenAlignment">
+                  <div class="timeLineContainer hidden-sm hidden-md hidden-lg timeLineContainerXsUp">
+                  </div>
+                  <div class="sectionStyle">
+                     <div class="blackRoundCircle hidden-sm hidden-md hidden-lg timelineXs">
+                        <div class="arrowImage">
+                        </div>
+                     </div>
+                     <table class="tableHeight100Percent">
+                        <tr>
+                           <td>
+                              <h3 class="ronniaFont titleStyle">
+                                 Realize o Cadastro
+                              </h3>
+                              <p class="descriptionStyle">
+                                 Acesse superavaliacao.com, cadastre-se, agende uma avaliação, escolhendo o local mais conveniente para você ou baixe nossa app no seu smartphone e faça você mesmo.
+                              </p>
+                           </td>
+                        </tr>
+                     </table>
+                  </div>
+               </div>
+            </div>
+            <div class="row padding0">
+               <div class="col-xs-10 col-sm-5 col-md-5 smallScreenAlignment">
+                  <div class="timeLineContainer hidden-sm hidden-md hidden-lg timeLineContainerXsRegular">
+                  </div>
+                  <div class="sectionStyle">
+                     <div class="yellowRoundCircle hidden-sm hidden-md hidden-lg timelineXs">
+                        <div class="dollarImage">
+                        </div>
+                     </div>
+                     <table class="tableHeight100Percent">
+                        <tr>
+                           <td>
+                              <h3 class="ronniaFont titleStyle">
+                                 Realize a Vistoria
+                              </h3>
+                              <p class="descriptionStyle">
+                                 Prepare-se para viver uma experiência inovadora, uma Superequipe irá avaliar seu veículo para encontrar um Supervalor para o seu patrimônio, em um menor tempo possível.
+                              </p>
+                           </td>
+                        </tr>
+                     </table>
+                  </div>
+               </div>
+               <div class="col-xs-2 col-sm-2 col-md-2 hidden-xs">
+                  <div class="timeLineContainer ">
+                     <div class="timelineImageHeight">
+                        <div class="yellowRoundCircle">
+                           <div class="eyeImage">
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <div class="col-xs-10 col-sm-5 col-md-5 hidden-xs">
+                  <div class="timelineImageHeight ">
+                     <img id="offerCar" src="images/t.png" style="    margin-left: 25%;
+                        margin-top: 10%;" data-original="images/home/como-2.png" class="img-responsive illustration illustrationRight"
+                        alt="Car image">
+                  </div>
+               </div>
+            </div>
+            <div class="row padding0">
+               <div class="col-xs-10 col-sm-5 col-md-5 hidden-xs">
+                  <div class="timelineImageHeight ">
+                     <img id="carrier" src="images/t.png" style="margin-left: 15%;" data-original="images/home/dropoff.png" class="img-responsive illustration illustrationLeft"
+                        alt="Carrier image">
+                  </div>
+               </div>
+               <div class="col-xs-2 col-sm-2 col-md-2 hidden-xs">
+                  <div class="timeLineContainer ">
+                     <div class="timelineImageHeight">
+                        <div class="redRoundCircle">
+                           <div class="dollarImage"></div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <div class="col-xs-10 col-sm-5 col-md-5 smallScreenAlignment">
+                  <div class="timeLineContainer hidden-sm hidden-md hidden-lg timeLineContainerXsRegular">
+                  </div>
+                  <div class="sectionStyle">
+                     <div class="redRoundCircle hidden-sm hidden-md hidden-lg timelineXs">
+                        <div class="eyeImage">
+                        </div>
+                     </div>
+                     <table class="tableHeight100Percent">
+                        <tr>
+                           <td>
+                              <h3 class="ronniaFont titleStyle">
+                                 Realize o Negócio
+                              </h3>
+                              <p class="descriptionStyle">
+                                 Aceitando a oferta proposta, o valor já entra como parte do
+                                 pagamento, para aquisição de outro veículo em qualquer loja parceira ou se preferir recebe o valor em R$ direto na sua conta bancária em até 48 horas, após checklist da documentação.
+                              </p>
+                           </td>
+                        </tr>
+                     </table>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <div class="greyBgStyle" id="diferenciais">
+            <div class="container">
+               <div class="text-center timeToPeddleTextContent">
+                  <h2 class="ronniaFont">
+                     Diferenciais Superavaliacao.com
+                  </h2>
+               </div>
+               <div class="row reasonForPeddleContainer">
+                  <div class="col-sm-4 col-md-4">
+                     <table class="timeForPeddleTitleText">
+                        <tr>
+                           <td>
+                              <div class="fa fa-check reasonForPeddleCar" >
+                                 <!-- <div class="toeTruckImage">
+                                    </div>-->
+                              </div>
+                           </td>
+                           <td>
+                           </td>
+                        </tr>
+                     </table>
+                     <p class="timeForPeddleDescriptionText">
+                        Dependendo da negociação, seu veículo usado pode valer até 100% da tabela Fipe;
+                     </p>
+                  </div>
+                  <div class="col-sm-4 col-md-4">
+                     <table class="timeForPeddleTitleText">
+                        <tr>
+                           <td>
+                              <div class="fa fa-check reasonForPeddleCar" >
+                                 <!-- <div class="toeTruckImage">
+                                    </div>-->
+                              </div>
+                           </td>
+                           <td>
+                           </td>
+                        </tr>
+                     </table>
+                     <p class="timeForPeddleDescriptionText">
+                        A SuperAvaliação do seu veículo tem validade em várias concessionárias parceiras,
+                        montadoras mundialmente conhecidas: Chevrolet, Fiat, Renault, Nissan, Ford, Honda
+                        e etc
+                     </p>
+                  </div>
+                  <div class="col-sm-4 col-md-4">
+                     <table class="timeForPeddleTitleText">
+                        <tr>
+                           <td>
+                              <div class="fa fa-check reasonForPeddleCar" >
+                                 <!-- <div class="toeTruckImage">
+                                    </div>-->
+                              </div>
+                           </div>
+                  </td>
+                  <td>
+                  </td>
+                  </tr>
+                  </table>
+                  <p class="timeForPeddleDescriptionText">
+                     Mais de 750 compradores profissionais cadastrados, dispostos a fazer a melhor oferta pelo seu veículo;
+                  </p>
+               </div>
+            </div>
+            <div style="margin-top: 0px;" class="row reasonForPeddleContainer">
+               <div class="col-sm-4 col-md-4">
+                  <table class="timeForPeddleTitleText">
+                     <tr>
+                        <td>
+                           <div class="fa fa-check reasonForPeddleCar" >
+                              <!-- <div class="toeTruckImage">
+                                 </div>-->
+                           </div>
+                        </td>
+                        <td>
+                        </td>
+                     </tr>
+                  </table>
+                  <p class="timeForPeddleDescriptionText">
+                     Não vendemos anúncios, realizamos negócios promovendo experiências memoráveis;
+                  </p>
+               </div>
+               <div class="col-sm-4 col-md-4">
+                  <table class="timeForPeddleTitleText">
+                     <tr>
+                        <td>
+                           <div class="fa fa-check reasonForPeddleCar" >
+                              <!-- <div class="toeTruckImage">
+                                 </div>-->
+                           </div>
+                        </td>
+                        <td>
+                        </td>
+                     </tr>
+                  </table>
+                  <p class="timeForPeddleDescriptionText">
+                     A plataforma une o que há de mais moderno em tecnologia e infraestrutura aliado a uma metodologia totalmente disruptiva para o mercado de compra e venda de veículos.
+                  </p>
+               </div>
+            </div>
+         </div>
+      </div>
+      <div id="plataforma" class="mapStyleBg" data-original="images/home/STEETS-tile.jpg">
+         <div class="container">
+            <div class="text-center recentlyPeddleTitleContainer">
+               <h2 class="ronniaFont recentlyPeddleText">
+                  Por que Superavaliacao.com?
+               </h2>
+               <h5 id="carSoldTextId" class="recentlyPeddleSubText">
+                  Superavaliação é uma startup que já conta com várias concessionárias parceiras e mais de 750 compradores profissionais de veículos cadastrados que aderiram ao modelo ganha-ganha entre comprador, plataforma e vendedor. Gerando valor para todos os envolvidos na transação.
+               </h5>
+            </div>
+            <div class="row">
+               <div class="col-sm-4 col-md-4 col-lg-5">
+               </div>
+               <div class="col-sm-4 col-md-4 col-lg-2 recentlyPeddleGetYourOffer">
+               </div>
+               <div class="col-sm-4 col-md-4 col-lg-5">
+               </div>
+            </div>
+         </div>
+      </div>
+      <div class="greyBgStyle" id="numeros">
+         <div class="container">
+            <div class="text-center timeToPeddleTextContent">
+               <h2 class="ronniaFont">
+                  Números da Plataforma de Janeiro a Abril 2017
+               </h2>
+            </div>
+            <div class="row reasonForPeddleContainer">
+               <div class="col-sm-3 col-md-3">
+                  <table class="timeForPeddleTitleText">
+                     <tr>
+                        <td>
+                           <h4 class="ronniaFont headingOfReason">
+                              01.
+                           </h4>
+                        </td>
+                     </tr>
+                  </table>
+                  <p class="timeForPeddleDescriptionText">
+                     98 média de veículos inseridos na plataforma diariamente e aumentandoprogressivamente.
+                  </p>
+               </div>
+               <div class="col-sm-3 col-md-3">
+                  <table class="timeForPeddleTitleText">
+                     <tr>
+                        <td>
+                        </td>
+                        <td>
+                           <h4 class="ronniaFont headingOfReason">
+                              02.
+                           </h4>
+                        </td>
+                     </tr>
+                  </table>
+                  <p class="timeForPeddleDescriptionText">
+                     829 transações já foram realizadas na plataforma.
+                  </p>
+               </div>
+               <div class="col-sm-3 col-md-3">
+                  <table class="timeForPeddleTitleText">
+                     <tr>
+                        <td>
+                        </td>
+                        <td>
+                           <h4 class="ronniaFont headingOfReason">
+                              03.
+                           </h4>
+                        </td>
+                     </tr>
+                  </table>
+                  <p class="timeForPeddleDescriptionText">
+                     6300 ofertas de veículos em média já passaram pela plataforma.
+                  </p>
+               </div>
+               <div class="col-sm-3 col-md-3">
+                  <table class="timeForPeddleTitleText">
+                     <tr>
+                        <td>
+                        </td>
+                        <td>
+                           <h4 class="ronniaFont headingOfReason">
+                              04.
+                           </h4>
+                        </td>
+                     </tr>
+                  </table>
+                  <p class="timeForPeddleDescriptionText">
+                     R$ 13,7 Milhões transacionados através da plataforma e aumentando diariamente.
+                  </p>
+               </div>
+            </div>
+         </div>
+      </div>
+      <div id="duvidas" class="orangeBgStyle borderGreyBottom">
+         <div id="socialNetworkContainer" class="container chatterImgBG" >
+            <div class="socialPanelIndicatorContainer">
+            </div>
+            <div class="text-center timeToPeddleTextContent">
+               <h2 style="margin-top: -5% !important; margin-bottom: 5%; color: black" class="ronniaFont">
+                  Dúvidas Frequentes
+               </h2>
+            </div>
+            <div class="row reasonForPeddleContainer">
+               <div class="col-sm-4 col-md-4">
+                  <table class="timeForPeddleTitleText">
+                     <tr>
+                        <td>
+                           <h4 class="ronniaFont headingOfReason" style="font-size: 17px;text-align:initial; color:black">
+                              01. Por que esta plataforma é diferente dos portais de classificados já existentes
+                              hoje que são os gratuitos ou até mesmo os pagos?
+                           </h4>
+                        </td>
+                     </tr>
+                  </table>
+                  <p class="timeForPeddleDescriptionText" style="font-size: 14px;text-align: justify;color: #767575;">
+                     Os portais de classificados atuais, são uma evolução dos classificados impressos,
+                     off-line, presentes nos jornais. O SuperAvaliação é uma evolução deste modelo, pois
+                     não comercializamos anúncios, realizamos negócios, conectando rapidamente
+                     compradores profissionais com vendedores, utilizando algoritmos modernos de
+                     computação e uma equipe de SuperConsultores interessados no sucesso do cliente.
+                  </p>
+               </div>
+               <div class="col-sm-4 col-md-4">
+                  <table class="timeForPeddleTitleText">
+                     <tr>
+                        <td>
+                        </td>
+                        <td>
+                           <h4 class="ronniaFont headingOfReason" style="font-size: 17px;text-align:initial; color:black"" >
+                              02. Meu veículo será vendido pelo preço da tabela FIPE?
+                           </h4>
+                        </td>
+                     </tr>
+                  </table>
+                  <p class="timeForPeddleDescriptionText" style="font-size: 14px;text-align: justify;color: #767575;">
+                     A FIPE é uma tabela de referência como outras que existem, o mercado automotivo
+                     adota esta referência como padrão, para guiar as negociações.
+                     Em algumas negociações envolvendo troca por um veículo 0KM, dependendo do
+                     estado do usado, o bem em questão pode chegar até a 100% da tabela fipe, para
+                     algumas montadoras.
+                     Porém na média do mercado o veículo tem uma variação para baixo do valor de
+                     referência da Fipe, ficando entre -20 à -33% do valor referenciado, chegando a
+                     situações de -40 à 50% em alguns casos. Imprescindível alertar que esta variação
+                     depende de uma composição de fatores; estado + parte do pagamento para
+                     aquisição de um 0 km + apenas vender o usado e pegar o dinheiro.
+                  </p>
+               </div>
+               <div class="col-sm-4 col-md-4">
+                  <table class="timeForPeddleTitleText">
+                     <tr>
+                        <td>
+                           <h4 class="ronniaFont headingOfReason" style="font-size: 17px;text-align:initial; color:black"">
+                              03.Diante dessa oscilação em relação ao preço de referência da Tabela Fipe,como posso ter certeza que estou fazendo um Super negócio?
+                           </h4>
+                        </td>
+                     </tr>
+                  </table>
+                  <p class="timeForPeddleDescriptionText" style="font-size: 14px;text-align: justify;color: #767575;">
+                     Isto é o que difere a plataforma SuperAvaliação dos classificados online, usa-se
+                     algoritmos computacionais baseado em análise preditiva para estabelecer sempre o
+                     melhor negócio para você e também para o parceiro comprador.
+                  </p>
+               </div>
+               <div class="col-sm-4 col-md-6">
+                  <table class="timeForPeddleTitleText">
+                     <tr>
+                        <td>
+                           <h4 class="ronniaFont headingOfReason" style="font-size: 17px;text-align:initial; color:black"">
+                              <strong>04. Sou uma pessoa física gostaria de participar do superavaliacao.com, qual o procedimento?</strong>
+                           </h4>
+                        </td>
+                     </tr>
+                  </table>
+                  <p class="timeForPeddleDescriptionText" style="font-size: 14px;text-align: justify;color: #767575;">
+                     É sempre um prazer, inclui-lo na nossa parceria, preencha o cadastro e aguarde a
+                     análise, caso prefira fale com um dos nossos SuperConsultores online, através do
+                     chat ou pelas nossas redes sociais. E aí já falou com Super hoje  
+                  </p>
+               </div>
+               <div class="col-sm-4 col-md-6">
+                  <table class="timeForPeddleTitleText">
+                     <tr>
+                        <td>
+                           <h4 class="ronniaFont headingOfReason" style="font-size: 17px;text-align:initial; font: bold;color:black"">
+                              05. Sou um comprador de veículos profissional como faço para ter acesso a
+                              plataforma?
+                           </h4>
+                        </td>
+                     </tr>
+                  </table>
+                  <p class="timeForPeddleDescriptionText" style="font-size: 14px;text-align: justify;color: #767575;">
+                     Levamos a sério a expressão “parceiros de negócios”, por isso para compradores
+                     profissionais desenvolvemos uma plataforma de funcionalidades e benefícios que podem
+                     ser utilizadas sem ônus por todos os compradores profissionais de veículos, acesse
+                     maisreapsse.com e cadastre-se agora
+                  </p>
+               </div>
+            </div>
+         </div>
+         <div id="tweet" class="swipe">
+         </div>
+      </div>
+      </div>
+      <div class="footerContainer">
+         <div class="container">
+            <div class="row paddingTop35 paddingBottom35-xs">
+               <div class="custom-col-md-6-15 custom-col-sm-6-15">
+                  <div class="peddleLogo">
+                  </div>
+                  <dir><img src="images/logo-footer.png"></dir>
+               </div>
+               <div class="custom-col-md-15 custom-col-sm-15 col-xs-6  innerFooterGrid">
+                  <div class="ronniaFont footerTitleTextClass">
+                     ENDEREÇO
+                  </div>
+                  <div>
+                     <a class="footerTextClass" href="the-peddle-edge.html">
+                     Av. Barão de Studart, 1846 A, 
+                     <p>Aldeota, Fortaleza - CE </p>
+                     </a> 
+                  </div>
+               </div>
+               <div class="custom-col-md-15 custom-col-sm-15 col-xs-6  innerFooterGrid">
+                  <div style="padding-left: 15px;" class="ronniaFont footerTitleTextClass">
+                     TELEFONE
+                  </div>
+                  <div>
+                     <div style="padding-left: 15px;" class="footerTextClass" href="buyer/overview.html">
+                        (85) 3306-8237
+                     </div>
+                  </div>
+               </div>
+               <div class="custom-col-md-15 custom-col-sm-15 col-xs-12 innerFooterGrid">
+                  <div class="ronniaFont footerTitleTextClass">
+                     EMAIL
+                  </div>
+                  <div>
+                     <div class="footerTextClass">                        
+                        falecom@maisrepasse.com 
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <div class="row marginTop20">
+            </div>
+            <div class="row footerAddressContentClass">
+               <div class="col-sm-6 col-md-6">
+                  <div class="allrightsReservedClass">
+                     &#169; Mídia9 - Todos os Direitos Reservados
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      </div>
+      <div id="volumeControl" class="tooltip displayNone">
+         <input type="text" class="filterSlider" value="" data-slider-min="0" data-slider-max="99"
+            data-slider-value="0" data-slider-orientation="vertical"
+            data-slider-selection="after" data-slider-tooltip="hide">
+      </div>
+      <noscript>
+         <div class="modal-scrollable" style="z-index: 1060;">
+            <div data-width="630" tabindex="-1" class="modal custom-modal in noscriptModal" aria-hidden="false">
+               <div class="modal-header custom-modal-header">
+                  <h4 class="modal-title text-center custom-modal-title-text ronniaFont">Javascript is disabled on your browser.</h4>
+               </div>
+               <div class="modal-body custom-modal-body-text paddingBottom0">
+                  <div class="custom-modal-body-nano" style="height: auto ! important;">
+                     <div class="overthrow content">
+                        <div class="marginBottom20">Please enable javascript or upgrade to a javascript-capable browser to use.</div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <div class="modal-backdrop in" style="z-index: 1050;"></div>
+      </noscript>
+      <script>(function () { var w = window; var ic = w.Intercom; if (typeof ic === "function") { ic('reattach_activator'); ic('update', intercomSettings); } else { var d = document; var i = function () { i.c(arguments) }; i.q = []; i.c = function (args) { i.q.push(args) }; w.Intercom = i; function l() { var s = d.createElement('script'); s.type = 'text/javascript'; s.async = true; s.src = 'https://widget.intercom.io/widget/olnhj68a'; var x = d.getElementsByTagName('script')[0]; x.parentNode.insertBefore(s, x); } if (w.attachEvent) { w.attachEvent('onload', l); } else { w.addEventListener('load', l, false); } } })()</script>
+      <script type="text/javascript">
+         dataLayer = [];
+      </script>
+      <noscript><iframe src="http://www.googletagmanager.com/ns.html?id=GTM-GQZN"
+         height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+      <script type="text/javascript">(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+         new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+         j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+         'assets/www.googletagmanager.com/gtm5445.html?id='+i+dl;f.parentNode.insertBefore(j,f);
+         })(window,document,'script','dataLayer','GTM-GQZN');
+      </script>
+      <div id="fb-root"></div>
+   </body>
+</html>
